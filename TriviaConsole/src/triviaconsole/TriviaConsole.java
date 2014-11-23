@@ -14,6 +14,9 @@ public class TriviaConsole {
 
     private static BufferedReader reader;
     private static Manager manager;
+    private static final int NumOfCatagories=4;
+    private static String[] selectedCat=new String[NumOfCatagories];
+    
 
     public static void main(String[] args) throws IOException {
 
@@ -67,15 +70,19 @@ public class TriviaConsole {
     }
 
     private static void playGame() throws IOException{ 
-        System.out.println("Please choose one of more categories that you want to play, when you finish choose 0");
+        System.out.println("\nIf you want to quit in the middle, please type 'Quit' or '-1'");
+        System.out.println("\nPlease choose one of more categories that you want to play, when you finish choose 0");
         List<Category> categoriesToPlay = new ArrayList<>();
+        
+        for (int i=0;i<NumOfCatagories;i++)
+            selectedCat[i]="";
+        
         Category cat;
         do { 
             cat = getCategory();
             categoriesToPlay.add(cat);
         } while(cat != Category.None);
         
-        System.out.println("\nIf you want to quit in the middle, please type 'Quit' or '-1'");
         System.out.println("\nGame starting\n\n");
         manager.startPlayMode(categoriesToPlay.toArray(new Category[1]));
         while( !manager.isGameEnded() ) {
@@ -186,13 +193,20 @@ public class TriviaConsole {
     private static Category getCategory() throws IOException {
         Category category = Category.None;
         System.out.println("Please select the category:");
-        System.out.println(Category.General.ordinal() + ". General");
-        System.out.println(Category.Geography.ordinal() + ". Geography");
-        System.out.println(Category.History.ordinal() + ". History");
-        System.out.println(Category.Sports.ordinal() + ". Sports");
+        System.out.println(Category.General.ordinal() + ". General " + selectedCat[Category.General.ordinal()-1]);
+        System.out.println(Category.Geography.ordinal() + ". Geography " + selectedCat[Category.Geography.ordinal()-1]);
+        System.out.println(Category.History.ordinal() + ". History " + selectedCat[Category.History.ordinal()-1]);
+        System.out.println(Category.Sports.ordinal() + ". Sports " + selectedCat[Category.Sports.ordinal()-1]);
 
         String selection = reader.readLine();
-
+        
+         if ("Quit".equals(selection) || "-1".equals(selection)){
+                System.out.println("Thank you for playing, Goodbye");
+                System.exit(0);
+         }  
+         if (Integer.parseInt(selection)>0 && Integer.parseInt(selection)<=NumOfCatagories)
+             selectedCat[Integer.parseInt(selection)-1]="- Choosen";
+         
         category = ParseHelper.parseCategory(selection);
 
         return category;
