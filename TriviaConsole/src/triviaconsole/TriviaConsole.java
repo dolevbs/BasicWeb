@@ -20,7 +20,7 @@ public class TriviaConsole {
         reader = new BufferedReader(new InputStreamReader(System.in));
         manager = new Manager();
 
-        System.out.println("Lets Play Trivia!");
+        System.out.println("Welcome to Trivia Game!");
 
         do {
             MainMenuOptions selectedOption = showMainMenu();
@@ -47,15 +47,15 @@ public class TriviaConsole {
                 break;
 
             case Quit:
-                System.out.println("Goodbye");
+                System.out.println("Thank you for playing, Goodbye");
                 return;
             }
         } while (true);
     }
 
     private static MainMenuOptions showMainMenu() throws IOException {
-        System.out.println("What do you want to do?");
-        System.out.println(MainMenuOptions.Play.ordinal() + ". Play");
+        System.out.println("Please choose from the following options:");
+        System.out.println(MainMenuOptions.Play.ordinal() + ". Play Trivia Game");
         System.out.println(MainMenuOptions.AddQuestion.ordinal() + ". Add Question");
         System.out.println(MainMenuOptions.DeleteQuestion.ordinal() + ". Delete Question");
         System.out.println(MainMenuOptions.Save.ordinal() + ". Save Changes");
@@ -66,22 +66,23 @@ public class TriviaConsole {
         return ParseHelper.parseMainMenuOptions(selection);
     }
 
-    private static void playGame() throws IOException{
-        System.out.println("First you need to choose categories, choose 0 when done picking categories");
+    private static void playGame() throws IOException{ 
+        System.out.println("Please choose one of more categories that you want to play, when you finish choose 0");
         List<Category> categoriesToPlay = new ArrayList<>();
         Category cat;
         do { 
             cat = getCategory();
             categoriesToPlay.add(cat);
         } while(cat != Category.None);
-
+        
+        System.out.println("\nIf you want to quit in the middle, please type 'Quit' or '-1'");
         System.out.println("\nGame starting\n\n");
         manager.startPlayMode(categoriesToPlay.toArray(new Category[1]));
         while( !manager.isGameEnded() ) {
             Question curQuestion = manager.getNextQuestionForPlay();            
             playQuestion(curQuestion);
         }
-        System.out.println("Game Ended, you can try again");
+        System.out.println("Game Ended");
     }
 
     private static void addQuestion() throws IOException {
@@ -294,6 +295,10 @@ public class TriviaConsole {
          }
          System.out.print("Your answer:");
          String input = reader.readLine();
+         if ("Quit".equals(input) || "-1".equals(input)){
+                System.out.println("Thank you for playing, Goodbye");
+                System.exit(0);
+         }   
          if ( true == que.verifyAnswer(input) ) {
             System.out.println("You Answered correctly");
          } else {
