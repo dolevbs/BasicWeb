@@ -24,6 +24,9 @@ public class TriviaConsole {
         manager = new Manager();
 
         System.out.println("Welcome to Trivia Game!");
+        
+        for (int i=0;i<NumOfCatagories;i++)
+            selectedCat[i]="";
 
         do {
             MainMenuOptions selectedOption = showMainMenu();
@@ -89,7 +92,7 @@ public class TriviaConsole {
             Question curQuestion = manager.getNextQuestionForPlay();            
             playQuestion(curQuestion);
         }
-        System.out.println("Game Ended");
+        System.out.println("\nGame Ended\n");
     }
 
     private static void addQuestion() throws IOException {
@@ -205,7 +208,7 @@ public class TriviaConsole {
                 System.exit(0);
          }  
          if (Integer.parseInt(selection)>0 && Integer.parseInt(selection)<=NumOfCatagories)
-             selectedCat[Integer.parseInt(selection)-1]="- Choosen";
+             selectedCat[Integer.parseInt(selection)-1]="- chosen";
          
         category = ParseHelper.parseCategory(selection);
 
