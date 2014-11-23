@@ -5,40 +5,42 @@ import models.Question;
 import enums.Category;
 import java.io.IOException;
 import java.io.FileNotFoundException;
+import java.util.Random;
 
 
 public class Manager {
 
     public final FileManager<ArrayList<Question>> fileManager;
 
-    private ArrayList<Question> questions;    
+    private ArrayList<Question> ListOfQuestions;    
     private boolean[] categoriesInPlay;
-    private int curIndex;    
+    private int[] indexOfRandomQuestions;
+    private int currentIndex;    
 
     public Manager() {
         fileManager = new FileManager<>("SavedGame.txt");
         categoriesInPlay = null;
         try {
-            questions = fileManager.Load();
+            ListOfQuestions = fileManager.Load();
         } catch (FileNotFoundException ex) {
             // Doesn't suppose to happen but ok...
         } catch(IOException ex) {
             System.err.println("Failed to read save file");
-            questions = null;
+            ListOfQuestions = null;
         } catch ( ClassNotFoundException ex) {
             System.err.println("Failed to read data, ClassNotFoundException");
-            questions = null;
+            ListOfQuestions = null;
         }
         // Some error occurd (maybe file not found and stuff) initiate a new save
-        if ( questions == null ) {
-           questions = new ArrayList<>();
+        if ( ListOfQuestions == null ) {
+           ListOfQuestions = new ArrayList<>();
         }
 
     }
 
     public void Save() {
         try{
-            fileManager.Save(questions);
+            fileManager.Save(ListOfQuestions);
         } catch (FileNotFoundException ex) {
             System.err.println("Failed to find save file");
         } catch(IOException ex) {
@@ -47,15 +49,15 @@ public class Manager {
     }
 
     public Question[] getQuestions() {
-        return questions.toArray(new Question[questions.size()]);
+        return ListOfQuestions.toArray(new Question[ListOfQuestions.size()]);
     }
 
     public void deleteQuestion(Question question) {
-        questions.remove(question);
+        ListOfQuestions.remove(question);
     }
 
     public void addQuestion(Question question) {
-        questions.add(question);
+        ListOfQuestions.add(question);
     }
 
     public void startPlayMode(Category[] categories) {         
@@ -63,7 +65,20 @@ public class Manager {
         for ( int i = 0; i < categories.length; i++ ){
             categoriesInPlay[categories[i].ordinal()] = true;
         }
-        curIndex = 0;
+        currentIndex = 0;
+        indexOfRandomQuestions=new int[ListOfQuestions.size()];
+        
+        for ( int i = 0; i < ListOfQuestions.size(); i++)  // Reset Random Question Index
+                indexOfRandomQuestions[i]=-1;
+                
+        for ( int i = 0; i < ListOfQuestions.size(); i++) {   // for Random Questions
+                Random rand=new Random();
+                int RandomNumber=rand.nextInt(ListOfQuestions.size());
+                while (indexOfRandomQuestions[RandomNumber]!=-1)
+                    RandomNumber=rand.nextInt(ListOfQuestions.size());
+                indexOfRandomQuestions[RandomNumber]=i;
+        }
+        
 
     }
     public Question getNextQuestionForPlay() {
@@ -72,10 +87,10 @@ public class Manager {
             return null;
         }
         Question toReturn = null;
-        for ( int i = curIndex; i < questions.size(); i++, curIndex++ ) {
-            if ( categoriesInPlay[questions.get(i).getCategory().ordinal()] == true ) {
-                toReturn = questions.get(i);
-                curIndex++;
+        for ( int i = currentIndex; i < ListOfQuestions.size(); i++, currentIndex++ ) {
+            if ( categoriesInPlay[ListOfQuestions.get(indexOfRandomQuestions[i]).getCategory().ordinal()] == true ) {
+                toReturn = ListOfQuestions.get(indexOfRandomQuestions[i]);
+                currentIndex++;
                 break;
             }
         }
@@ -83,6 +98,6 @@ public class Manager {
     }
 
     public boolean isGameEnded() { 
-        return (curIndex) >= questions.size();
+        return (currentIndex) >= ListOfQuestions.size();
     }
 }
