@@ -1,0 +1,76 @@
+html,body {
+margin:0;
+padding:0;
+}
+body {
+font: 73% helvetica, arial, sans-serif;
+line-height:1.8em;
+background: #fff url(images/02.gif) repeat;
+color: #666;
+}
+			/*BANNER PROPERTIES*/
+#banner {
+
+height:100px;
+background:#bbd9ee url(images/banner.jpg) top center no-repeat;
+}
+#banner h1 {
+margin: 0 0 0 250px;
+line-height:1.8em;
+letter-spacing: 3px;
+font-size: 2em;
+color: #fff;
+}
+			/*CONTENT_lEFT*/
+#contentleft {
+float: left;
+width: 10%;
+height:70%;
+}
+#content
+{
+text-align: center;
+color : #ff9933;
+margin : 5px 0 0 0;
+padding-left : 10px;
+}
+			/*FOOTER*/
+#footer {
+width:100%;
+height: 5%;
+clear: both;
+text-align: right;
+padding: 5px;
+border-top: 3px solid #ff9933;
+background: #bbd9ee;
+position: absolute; 
+bottom: 0; 
+left: 0;
+}
+			/*CURVED CORNERS*/
+dl.curved {background:#bbd9ee url(images/c_tl.gif) top left no-repeat; margin:15px 0; padding:0; width:100%;}
+dl.curved dt {background:transparent url(images/c_tr.gif) top right no-repeat; padding:10px; text-align:center; font-weight: bold; color:#fff;}
+dl.curved dd {background:#eee url(images/c_bl.gif) bottom left no-repeat; padding:0; margin:0;}
+dl.curved dd p {margin:0; padding:10px; line-height:1.53em;}
+dl.curved dd p.last {background:transparent url(images/c_br.gif) bottom right no-repeat; }
+			/*LINK PROPERTIES*/
+a img {
+border: none;
+}
+a:link, a:visited {
+color : #286e87;
+background : inherit;
+text-decoration : none;
+}
+a:hover {
+text-decoration : none;
+color : #999;
+background : inherit;
+}
+#navlist li {
+list-style-image : url(images/right.gif);
+background : inherit;
+color : #ff9933;
+margin : 5px 0 0 0;
+padding-left : 10px;
+}
