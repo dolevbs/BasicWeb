@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 public class StartGame extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String itemID = request.getParameter("itemID");
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -32,14 +33,15 @@ public class StartGame extends HttpServlet {
             out.println("<head>");
             out.println("<title>Servlet StartGame</title>");            
             out.println("</head>");
-            out.println("<body>");
+            out.println("<body>");       
             out.println("<h1 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
             out.println("Please choose from the following options:</h1><br><br><br>");
-            out.println("<h2 align=\"center\" id=\"content\">"+MainMenuOptions.Play.ordinal() + ". Play Trivia Game<br><br>");
-            out.println(MainMenuOptions.AddQuestion.ordinal() + ". Add Question<br><br>");
-            out.println(MainMenuOptions.DeleteQuestion.ordinal() + ". Delete Question<br><br>");
-            out.println(MainMenuOptions.Save.ordinal() + ". Save Changes<br><br>");
-            out.println(MainMenuOptions.Quit.ordinal() + ". Quit<br><br>");
+            out.println("<h2 align=\"center\" id=\"content\">");
+            out.println("<a href=\"StartGame?itemID="+MainMenuOptions.Play.ordinal()+"\">" + MainMenuOptions.Play.ordinal() + ". Play Game</a><br><br>");
+            out.println("<a href=\"StartGame?itemID="+MainMenuOptions.AddQuestion.ordinal()+"\">"+MainMenuOptions.AddQuestion.ordinal() + ". Add Question</a><br><br>");
+            out.println("<a href=\"StartGame?itemID="+MainMenuOptions.DeleteQuestion.ordinal()+"\">"+MainMenuOptions.DeleteQuestion.ordinal() + ". Delete Question</a><br><br>");
+            out.println("<a href=\"StartGame?itemID="+MainMenuOptions.Save.ordinal()+"\">"+MainMenuOptions.Save.ordinal() + ". Save Changes</a><br><br>");
+            out.println("<a href=\"StartGame?itemID="+MainMenuOptions.Quit.ordinal()+"\">"+MainMenuOptions.Quit.ordinal() + ". Quit</a><br><br>");
             out.println("</h2>");       
             out.println("</body>");
             out.println("</html>");
@@ -55,3 +57,4 @@ public class StartGame extends HttpServlet {
     }
 
 }
+
