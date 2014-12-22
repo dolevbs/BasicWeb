@@ -5,22 +5,13 @@ package View;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import enums.*;
-import helpers.ParseHelper;
-import models.*;
-import TriviaConsole.*;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import logic.Manager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 public class ServletCatagory extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

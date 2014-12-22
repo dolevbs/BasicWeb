@@ -15,20 +15,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import logic.Manager;
-import triviaconsole.TriviaConsole;
 
 /**
  *
  * @author Aviran
  */
 public class ServletdeleteQuestion extends HttpServlet {
-    Question[] questions = TriviaConsole.manager.getQuestions();
+    private Manager manager;    
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        manager = new Manager();
+        Question[] questions = manager.getQuestions();
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {            
-            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");

@@ -12,14 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import logic.Manager;
-import triviaconsole.TriviaConsole;
 
 /**
  *
  * @author Aviran
  */
 public class ServletSave extends HttpServlet {
-    private static Manager manager=TriviaConsole.manager;
+    private static Manager manager= new Manager();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
