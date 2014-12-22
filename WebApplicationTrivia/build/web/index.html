@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Trivia Game</title>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="banner">
+  <h1>Trivia Game</h1>
+    <iframe  src="ServletLogin" style=" border: 0px">
+  </iframe>
+ 
+</div> 
+<div id="container">
+    <div align="bottom" id="contentleft">
+    <dl class="curved">
+      <dt>Menu</dt>
+      <dd> <br />
+        <ul id="navlist">
+          <li><a href="StartGame" target="if" input type='hidden' name='mode' value='play'>Start Game</a></li>
+          <li><a href="similargames" target="if">Similar Games</a></li>
+          <li><a href="about" target="if">About</a></li>
+        </ul>
+        <p class="last">&nbsp;</p>
+      </dd>
+    </dl>
+  </div>
+  <div  id="content">
+          <iframe name="if" style="width:90%;height: 700px; border: 0px">
+    </iframe>
+  </div>
+ </div>
+<div id="footer" >
+  <p>Design by Dolev Ben Shushan and Aviran Jerbby</p>
+</div>
+</body>
+</html>
