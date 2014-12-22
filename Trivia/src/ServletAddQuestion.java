@@ -35,13 +35,13 @@ public class ServletAddQuestion extends HttpServlet {
             out.println("<input type=\"radio\" name=\"difficulty\" value=\"Medium\">Medium  ");
             out.println("<input type=\"radio\" name=\"difficulty\" value=\"Hard\">Hard<br>");
             //catagory
-            out.println("<h1 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
-            out.println("Please select the category:</h1>");
+            out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
+            out.println("Please select the category:</h2>");
             out.println("<h3 align=\"center\" id=\"content\">");
-            out.println("<input type=\"checkbox\" name=\"Catagory1\" value=\"General\">General ");
-            out.println("<input type=\"checkbox\" name=\"Catagory2\" value=\"Geography\">Geography ");
-            out.println("<input type=\"checkbox\" name=\"Catagory3\" value=\"History\">History ");
-            out.println("<input type=\"checkbox\" name=\"Catagory4\" value=\"Sports\">Sports<br><br>");
+            out.println("<input type=\"radio\" name=\"Catagory\" value=\"General\">General ");
+            out.println("<input type=\"radio\" name=\"Catagory\" value=\"Geography\">Geography ");
+            out.println("<input type=\"radio\" name=\"Catagory\" value=\"History\">History ");
+            out.println("<input type=\"radio\" name=\"Catagory\" value=\"Sports\">Sports<br>");
             //type of question
             out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
             out.println("Select question type:</h2>");
