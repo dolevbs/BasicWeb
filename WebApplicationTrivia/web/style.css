@@ -21,6 +21,14 @@ letter-spacing: 3px;
 font-size: 2em;
 color: #fff;
 }
+
+#banneruser {
+margin: 0 0 0 250px;
+line-height:1.8em;
+letter-spacing: 3px;
+font-size: 1em;
+color: #fff;
+}
 			/*CONTENT_lEFT*/
 #contentleft {
 float: left;

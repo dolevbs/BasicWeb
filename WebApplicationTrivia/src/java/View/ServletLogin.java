@@ -45,7 +45,7 @@ public class ServletLogin extends HttpServlet {
 
          if (sname!=""){
 
-            out.println("<h3> Welcome "+ sname + " </h3>");
+            out.println("<h3 style=\"color:white;\"> Welcome "+ sname + " </h3>");
             out.println("<form action=\"ServletLogin\" method=\"GET\">");
             out.println("<input type=\"hidden\" name=\"logout\" value=\"true\">");
             out.println("<h3> <INPUT TYPE=\"SUBMIT\" VALUE=\"Log Out\">");
@@ -53,7 +53,7 @@ public class ServletLogin extends HttpServlet {
         }
          else {
             out.println("<form action=\"ServletLogin\" method=\"GET\">");
-            out.println("<h3> Name: <input  type=\"text\"  name=\"username\"><br> <INPUT align=\"right\" TYPE=\"SUBMIT\" VALUE=\"Log in\">");
+            out.println("<h3 style=\"color:white;\"> Name: <input  type=\"text\"  name=\"username\"><br> <INPUT align=\"right\" TYPE=\"SUBMIT\" VALUE=\"Log in\">");
             out.println("<input type=\"checkbox\" name=\"remember\" value=\"True\">Remember Me<br>");
 
             out.println("</h3> </form>");
