@@ -15,22 +15,22 @@ public class ServletLogin extends HttpServlet {
         Cookie[] cookies = request.getCookies();
         
         String sname="";    
+        String s = request.getParameter("logout");
         if (cookies!=null) {
          for (int i = 0; i < cookies.length; i++){
-             if (request.getParameter("log")=="true" && cookies[i].getName().equals("Name")) {
-                 cookies[i].setMaxAge(-1);
-                 break;
-             }
              if (cookies[i].getName().equals("Name"))
-                 sname=cookies[i].getValue();
+                 if (request.getParameter("logout")!=null)
+                     cookies[i].setMaxAge(-1);
+                 else
+                     sname=cookies[i].getValue();         
          }
         }
-         if (sname=="" && request.getParameter("name")!=null){
-             Cookie firstName = new Cookie("Name", request.getParameter("name"));
-             sname=request.getParameter("name");
-             if (request.getParameter("remember")=="True")
-                  firstName.setMaxAge(60*60*24); 
+         if (sname=="" && request.getParameter("username")!=null){
+             Cookie firstName = new Cookie("Name", request.getParameter("username"));
+             sname=request.getParameter("username");
              response.addCookie( firstName ); 
+            if (request.getParameter("remember")!=null)
+                  firstName.setMaxAge(60*60*24); 
          }
          
         response.setContentType("text/html;charset=UTF-8");
@@ -45,15 +45,17 @@ public class ServletLogin extends HttpServlet {
 
          if (sname!=""){
 
-            out.println("<h2 align=\"right\"> Welcome "+ sname + " </h2>");
-            out.println("<form action=\"ServletLogin?logout=\"true\" method=\"GET\">");
-            out.println("<h3> <INPUT align=\"right\" TYPE=\"SUBMIT\" VALUE=\"Log Out\">");
+            out.println("<h3> Welcome "+ sname + " </h3>");
+            out.println("<form action=\"ServletLogin\" method=\"GET\">");
+            out.println("<input type=\"hidden\" name=\"logout\" value=\"true\">");
+            out.println("<h3> <INPUT TYPE=\"SUBMIT\" VALUE=\"Log Out\">");
             out.println("</h3> </form>");
         }
          else {
             out.println("<form action=\"ServletLogin\" method=\"GET\">");
-            out.println("<h3 align=\"right\"> Name: <input  type=\"text\"  name=\"name\"><br> <INPUT align=\"right\" TYPE=\"SUBMIT\" VALUE=\"Log in\">");
+            out.println("<h3> Name: <input  type=\"text\"  name=\"username\"><br> <INPUT align=\"right\" TYPE=\"SUBMIT\" VALUE=\"Log in\">");
             out.println("<input type=\"checkbox\" name=\"remember\" value=\"True\">Remember Me<br>");
+
             out.println("</h3> </form>");
 
          }
