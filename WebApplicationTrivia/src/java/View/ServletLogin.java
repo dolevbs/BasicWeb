@@ -12,17 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 public class ServletLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Cookie[] cookies = request.getCookies();
         
+        Cookie[] cookies = request.getCookies();        
         String sname="";    
-        String s = request.getParameter("logout");
+
         if (cookies!=null) {
-         for (int i = 0; i < cookies.length; i++){
-             if (cookies[i].getName().equals("Name"))
+         for (Cookie c : cookies){
+             if (c.getName().equals("Name"))
                  if (request.getParameter("logout")!=null)
-                     cookies[i].setMaxAge(-1);
+                     c.setMaxAge(-1);
                  else
-                     sname=cookies[i].getValue();         
+                     sname=c.getValue();         
          }
         }
          if (sname=="" && request.getParameter("username")!=null && request.getParameter("username")!=""){

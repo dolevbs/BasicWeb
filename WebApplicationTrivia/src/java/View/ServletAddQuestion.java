@@ -26,7 +26,7 @@ public class ServletAddQuestion extends HttpServlet {
             out.println("<h1 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
             out.println("Please insert the question:</h1><br>");
             out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
-            out.println("Question: <input  type=\"text\"  name=\"question\"></h2><br>");
+            out.println("Question: <input  type=\"text\"  name=\"question\" size=\"35\" placeholder=\"Write Here the Question\"></h2><br>");
             //difficulty
             out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
             out.println("Please select the difficulty:</h2>");
