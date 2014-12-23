@@ -25,7 +25,7 @@ public class ServletLogin extends HttpServlet {
                      sname=cookies[i].getValue();         
          }
         }
-         if (sname=="" && request.getParameter("username")!=null){
+         if (sname=="" && request.getParameter("username")!=null && request.getParameter("username")!=""){
              Cookie firstName = new Cookie("Name", request.getParameter("username"));
              sname=request.getParameter("username");
              response.addCookie( firstName ); 
