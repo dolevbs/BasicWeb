@@ -53,7 +53,8 @@ public class ServletLogin extends HttpServlet {
         }
          else {
             out.println("<form action=\"ServletLogin\" method=\"GET\">");
-            out.println("<h3 style=\"color:white;\"> Name: <input  type=\"text\"  name=\"username\"><br> <INPUT align=\"right\" TYPE=\"SUBMIT\" VALUE=\"Log in\">");
+            out.println("<h3 style=\"color:white;\"> Name: <input  type=\"text\"  name=\"username\" placeholder=\"Write Here\"><br>");
+            out.println("<INPUT align=\"right\" TYPE=\"SUBMIT\" VALUE=\"Log in \">");
             out.println("<input type=\"checkbox\" name=\"remember\" value=\"True\">Remember Me<br>");
 
             out.println("</h3> </form>");
