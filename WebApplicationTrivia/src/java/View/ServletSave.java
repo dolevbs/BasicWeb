@@ -18,7 +18,6 @@ import logic.Manager;
  * @author Aviran
  */
 public class ServletSave extends HttpServlet {
-    private static Manager manager= new Manager();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,7 +32,7 @@ public class ServletSave extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            manager.Save();
+            Manager.getInsance().Save();
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");

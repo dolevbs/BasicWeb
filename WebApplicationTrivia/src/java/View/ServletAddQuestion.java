@@ -48,7 +48,9 @@ public class ServletAddQuestion extends HttpServlet {
             out.println("<h3 align=\"center\" id=\"content\">");
             out.println("<input type=\"radio\" name=\"type\" value=\"Open\">1. Open question<br>");
             out.println("<input type=\"radio\" name=\"type\" value=\"YesNo\">2. Yes or No question<br>");
-            out.println("<input type=\"radio\" name=\"type\" value=\"ML\">3. Multiple choice question<br><br>");
+            out.println("<input type=\"radio\" name=\"type\" value=\"ML\">3. Multiple choice question");
+            out.println("-Number of Answers: <input  type=\"text\"  name=\"numofanswers\" size=\"1\"><br><br>");
+            
             out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Add\">\n");
             out.println("</form>");
             out.println("</h3>");       
