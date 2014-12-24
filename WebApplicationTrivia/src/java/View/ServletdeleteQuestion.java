@@ -6,6 +6,7 @@
 package View;
 
 import enums.*;
+import logic.*;
 import helpers.ParseHelper;
 import models.*;
 import java.io.IOException;
@@ -20,13 +21,13 @@ import logic.Manager;
  *
  * @author Aviran
  */
-public class ServletdeleteQuestion extends HttpServlet {
-    private Manager manager;    
+public class ServletdeleteQuestion extends HttpServlet {  
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        manager = new Manager();
-        Question[] questions = manager.getQuestions();
+        
+        Question[] questions = Manager.getInsance().getQuestions();
+        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {            
             out.println("<!DOCTYPE html>");

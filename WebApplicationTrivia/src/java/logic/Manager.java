@@ -16,9 +16,18 @@ public class Manager {
     private boolean[] categoriesInPlay;
     private int[] indexOfRandomQuestions;
     private int currentIndex;    
+    private static Manager manager;
+    
+        public static Manager getInsance() {
+        if (manager == null) {
+            manager = new Manager();
+        }
+
+        return manager;
+    }
 
     public Manager() {
-        fileManager = new FileManager<>("SavedGame.txt");
+        fileManager = new FileManager<>("C:\\Users\\Aviran\\Documents\\GitHub\\BasicWeb\\WebApplicationTrivia\\SavedGame.txt");
         categoriesInPlay = null;
         try {
             ListOfQuestions = fileManager.Load();
