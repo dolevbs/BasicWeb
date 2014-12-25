@@ -62,7 +62,7 @@ public class ServletAddQuestion extends HttpServlet {
                             ArrayList<String> options = new ArrayList<>();
                             
                             for (int i = 1; i < NOQ + 1; i++)
-                                options.add(request.getParameter("question"+i));
+                                options.add(request.getParameter("answer"+i));
                             
                             question = new MultipleChoiceQuestion(difficulty, category, questionText, options, correctanswer);
                             break;
@@ -165,7 +165,7 @@ public class ServletAddQuestion extends HttpServlet {
                     case "YesNo":
                         out.println("<form action=\"ServletAddQuestion?questionText="+questionText+"&difficulty="+difficulty+"&category="+category+"&typeofquestion="+typeofquestion+"\" method=\"POST\">");
                         out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
-                        out.println("Answer: <input type=\"radio\" name=\"answer\" value=\"Yes\">Yes ");
+                        out.println("Answer: <input type=\"radio\" name=\"answer\" value=\"Yes\" checked>Yes ");
                         out.println("<input type=\"radio\" name=\"answer\" value=\"No\">No ");
                         out.println("<br><INPUT TYPE=\"SUBMIT\" VALUE=\"Add\">\n");
                         out.println("</h2></form>");
@@ -191,7 +191,7 @@ public class ServletAddQuestion extends HttpServlet {
                            out.println("?questionText="+questionText+"&difficulty="+difficulty+"&category="+category+"&typeofquestion="+typeofquestion+"&NOQ="+NOQ+"\" method=\"POST\">");
                            out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
                            for (int i = 1; i <= NOQ; i++)
-                               out.println("Answer "+i+": <input  type=\"text\"  name=\"question"+i+"\" size=\"35\" placeholder=\"Write Here the Answer\"><br>");
+                               out.println("Answer "+i+": <input  type=\"text\"  name=\"answer"+i+"\" size=\"35\" placeholder=\"Write Here the Answer\"><br>");
                            
                            // ComboBox for RightAnswer
                            out.println("<br><h2 align=\"center\"> The Correct answer: <select name=\"answer\">");
