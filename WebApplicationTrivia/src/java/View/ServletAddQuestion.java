@@ -7,6 +7,7 @@ import helpers.ParseHelper;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -177,10 +178,11 @@ public class ServletAddQuestion extends HttpServlet {
                         
                    case "ML":
                        // In case Number of Answers Field empty
-                       if (request.getParameter("numofanswers")==""){
+                       if (request.getParameter("numofanswers")=="" || Pattern.matches("[a-zA-Z]+", request.getParameter("numofanswers"))
+                               || Integer.parseInt (request.getParameter("numofanswers"))<=0){
                             out.println("<form action=\"ServletAddQuestion\" method=\"GET\">");
                             out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
-                            out.println("Number of Answers Field is Empty<br>");
+                            out.println("You didn't enter a valid character to Number of Answers Field or the the field is empty<br>");
                             out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Return\">\n");
                             out.println("</h2></form>");
                        }
