@@ -20,8 +20,12 @@ public class ServletAddQuestion extends HttpServlet {
             out.println("<head>");
             out.println("<title>Servlet StartGame</title>");            
             out.println("</head>");
-            out.println("<body>");    
-            out.println("<form action=\"\">");
+            out.println("<body>");   
+            
+            // Main screen
+            if (request.getParameter("type")==null && request.getParameter("difficulty")==null && request.getParameter("Catagory")==null) {
+                
+            out.println("<form action=\"ServletAddQuestion\" method=\"GET\">");
             //question
             out.println("<h1 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
             out.println("Please insert the question:</h1><br>");
@@ -50,10 +54,82 @@ public class ServletAddQuestion extends HttpServlet {
             out.println("<input type=\"radio\" name=\"type\" value=\"YesNo\">2. Yes or No question<br>");
             out.println("<input type=\"radio\" name=\"type\" value=\"ML\">3. Multiple choice question");
             out.println("-Number of Answers: <input  type=\"text\"  name=\"numofanswers\" size=\"1\"><br><br>");
-            
+         
             out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Add\">\n");
             out.println("</form>");
-            out.println("</h3>");       
+            
+            out.println("</h3>");  
+            
+            }
+            
+            else {
+                
+                
+                // In case one of the fields empty
+                if (request.getParameter("question")=="" || request.getParameter("difficulty")==null || request.getParameter("Catagory")==null || request.getParameter("type")==null){
+                    out.println("<form action=\"ServletAddQuestion\" method=\"GET\">");
+                    out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
+                    if (request.getParameter("question")=="")
+                        out.println("Answer Field is Empty<br>");
+                    if (request.getParameter("difficulty")==null)
+                        out.println("Difficulty Field is Empty<br>");
+                    if (request.getParameter("Catagory")==null)
+                        out.println("Catagory Field is Empty<br>");
+                    if (request.getParameter("type")==null)
+                        out.println("Type of question Field is Empty<br>");
+                    
+                    out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Return\">\n");
+                    out.println("</h2></form>");
+                        
+                }
+                else switch (request.getParameter("type")){
+                    case "Open":
+                        out.println("<form action=\"ServletAddQuestion\" method=\"GET\">");
+                        out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
+                        out.println("Answer: <input  type=\"text\"  name=\"question\" size=\"35\" placeholder=\"Write Here the Answer\"><br>");
+                        out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Add\">\n");
+                        out.println("</h2></form>");
+                        break;
+                        
+                    case "YesNo":
+                         out.println("<form action=\"ServletAddQuestion\" method=\"GET\">");
+                        out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
+                        out.println("Answer: <input type=\"radio\" name=\"answer\" value=\"Yes\">Yes ");
+                        out.println("<input type=\"radio\" name=\"answer\" value=\"No\">No ");
+                        out.println("<br><INPUT TYPE=\"SUBMIT\" VALUE=\"Add\">\n");
+                        out.println("</h2></form>");
+                        break;
+                        
+                   case "ML":
+                       // In case Number of Answers Field empty
+                       if (request.getParameter("numofanswers")==""){
+                            out.println("<form action=\"ServletAddQuestion\" method=\"GET\">");
+                            out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
+                            out.println("Number of Answers Field is Empty<br>");
+                            out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Return\">\n");
+                            out.println("</h2></form>");
+                       }
+                       else{
+                           int NOQ = Integer.parseInt (request.getParameter("numofanswers"));
+                           
+                           out.println("<form action=\"ServletAddQuestion\" method=\"GET\">");
+                           out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
+                           for (int i = 1; i <= NOQ; i++)
+                               out.println("Answer "+i+": <input  type=\"text\"  name=\"question"+i+"\" size=\"35\" placeholder=\"Write Here the Answer\"><br>");
+                           out.println("<br><INPUT TYPE=\"SUBMIT\" VALUE=\"Add\">\n");
+                           out.println("</h2></form>");    
+                       }
+                   
+                           
+                           
+                           
+                        
+                                
+                }
+                
+            }
+            
+            out.println("<br><h4 align=\"center\"> * Question will be added permanently only after saving changes in StartGame menu </h4>");
             out.println("</body>");
             out.println("</html>");
         }

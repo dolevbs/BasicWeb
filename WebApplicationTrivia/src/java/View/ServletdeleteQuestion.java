@@ -36,9 +36,19 @@ public class ServletdeleteQuestion extends HttpServlet {
             out.println("<title>Servlet StartGame</title>");            
             out.println("</head>");
             out.println("<body>");   
-                    
-
-        if (questions.length == 0) {
+            
+        if (request.getParameter("number") != null) {
+            int num=Integer.parseInt (request.getParameter("number"));
+            Manager.getInsance().deleteQuestion(questions[num - 1]);
+            out.println("<h1 align=\"center\">Delete successful");
+            out.println("<form action=\"ServletdeleteQuestion\" method=\"GET\">");
+            out.println("<br>");
+            out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Return\">");
+            out.println("</form></h1>");
+  
+        }
+         
+        else if (questions.length == 0) {
             out.println("<h1 align=\"center\">There are no questions to delete</h1>");
         }
         else {
@@ -51,8 +61,20 @@ public class ServletdeleteQuestion extends HttpServlet {
                 out.println(i + ". " + questions[i - 1].getQuestionText());
                 out.println("<br>");
             }
+            out.println("</h2><br><br>");
+            
+            out.println("<form action=\"ServletdeleteQuestion\" method=\"GET\">");
+            out.println("<h2 align=\"center\"> Please enter the number of question you want to delete: <select name=\"number\">");
+            for (int i = 1; i <= questions.length; i++)
+                out.println("<option value=\""+i+"\">"+i+"</option>");
+            out.println("</select>");
+            out.println("<br><br>");
+            out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Delete\">");
+            out.println("</form>");
             out.println("</h2>");
+            
         }
+            out.println("<br><h4 align=\"center\"> * Question will be deleted permanently only after saving changes in StartGame menu </h4>");
             out.println("</body>");
             out.println("</html>");
         }
