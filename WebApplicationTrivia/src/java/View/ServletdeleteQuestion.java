@@ -41,7 +41,7 @@ public class ServletdeleteQuestion extends HttpServlet {
             int num=Integer.parseInt (request.getParameter("number"));
             Manager.getInsance().deleteQuestion(questions[num - 1]);
             out.println("<h1 align=\"center\">Delete successful");
-            out.println("<form action=\"ServletdeleteQuestion\" method=\"GET\">");
+            out.println("<form action=\"StartGame\" method=\"GET\">");
             out.println("<br>");
             out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Return\">");
             out.println("</form></h1>");

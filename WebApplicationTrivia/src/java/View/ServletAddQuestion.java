@@ -1,12 +1,19 @@
 
 package View;
 
+import enums.Category;
+import enums.Difficulty;
+import helpers.ParseHelper;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import jdk.nashorn.internal.ir.RuntimeNode;
+import logic.Manager;
+import models.Question;
+import models.YesNoQuestion;
 
 public class ServletAddQuestion extends HttpServlet {
 
@@ -21,6 +28,52 @@ public class ServletAddQuestion extends HttpServlet {
             out.println("<title>Servlet StartGame</title>");            
             out.println("</head>");
             out.println("<body>");   
+            
+            
+            //Add the question
+            
+            if (request.getParameter("answer")!=null){
+                    Question question = null;
+                    
+                    
+                    String questionText=request.getParameter("questionText");
+                    Difficulty difficulty=ParseHelper.parseDifficulty(request.getParameter("difficulty"));
+                    Category category=ParseHelper.parseCategory(request.getParameter("category"));
+                    String typeofquestion = request.getParameter("typeofquestion");
+                    
+                    switch (typeofquestion) {
+                        case "Open":
+                            String answer=request.getParameter("answer");
+                            question = new Question(difficulty, category, questionText, answer);
+                            break;
+                        case "YesNo":   
+                            boolean isTrue;
+                            if (request.getParameter("answer")=="Yes")
+                                isTrue=true;
+                            else isTrue=false;
+                            question = new YesNoQuestion(difficulty, category, questionText, isTrue);
+                            break;
+                        case "ML":   
+                            int NOQ = Integer.parseInt (request.getParameter("NOQ"));
+                            int numofanswer=Integer.parseInt (request.getParameter("answer"));
+                            //Function Missing Here
+                            break;
+                                
+                    }
+                if (question != null)
+                    Manager.getInsance().addQuestion(question);
+                
+                out.println("<h1 align=\"center\">Added successful");
+                out.println("<form action=\"StartGame\" method=\"GET\">");
+                out.println("<br>");
+                out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Return\">");
+                out.println("</form></h1>");
+                out.println("<br><h4 align=\"center\"> * Question will be added permanently only after saving changes in StartGame menu </h4>");
+                out.println("</body>");
+                out.println("</html>");
+                return;
+                
+            }
             
             // Main screen
             if (request.getParameter("type")==null && request.getParameter("difficulty")==null && request.getParameter("Catagory")==null) {
@@ -82,11 +135,17 @@ public class ServletAddQuestion extends HttpServlet {
                     out.println("</h2></form>");
                         
                 }
-                else switch (request.getParameter("type")){
+                else {
+                    String questionText=request.getParameter("question");
+                    String difficulty=request.getParameter("difficulty");
+                    String category=request.getParameter("category");
+                    String typeofquestion = request.getParameter("type");
+                    
+                    switch (request.getParameter("type")){
                     case "Open":
-                        out.println("<form action=\"ServletAddQuestion\" method=\"GET\">");
+                        out.println("<form action=\"ServletAddQuestion?questionText="+questionText+"&difficulty="+difficulty+"&category="+category+"&typeofquestion="+typeofquestion+"\" method=\"POST\">");
                         out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
-                        out.println("Answer: <input  type=\"text\"  name=\"question\" size=\"35\" placeholder=\"Write Here the Answer\"><br>");
+                        out.println("Answer: <input  type=\"text\"  name=\"answer\" size=\"35\" placeholder=\"Write Here the Answer\"><br>");
                         out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Add\">\n");
                         out.println("</h2></form>");
                         out.println("<form action=\"ServletAddQuestion\" method=\"GET\">");
@@ -96,7 +155,7 @@ public class ServletAddQuestion extends HttpServlet {
                         break;
                         
                     case "YesNo":
-                         out.println("<form action=\"ServletAddQuestion\" method=\"GET\">");
+                        out.println("<form action=\"ServletAddQuestion?questionText="+questionText+"&difficulty="+difficulty+"&category="+category+"&typeofquestion="+typeofquestion+"\" method=\"POST\">");
                         out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
                         out.println("Answer: <input type=\"radio\" name=\"answer\" value=\"Yes\">Yes ");
                         out.println("<input type=\"radio\" name=\"answer\" value=\"No\">No ");
@@ -120,10 +179,18 @@ public class ServletAddQuestion extends HttpServlet {
                        else{
                            int NOQ = Integer.parseInt (request.getParameter("numofanswers"));
                            
-                           out.println("<form action=\"ServletAddQuestion\" method=\"GET\">");
+                           out.println("<form action=\"ServletAddQuestion");
+                           out.println("?questionText="+questionText+"&difficulty="+difficulty+"&category="+category+"&typeofquestion="+typeofquestion+"&NOQ="+NOQ+"\" method=\"POST\">");
                            out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
                            for (int i = 1; i <= NOQ; i++)
                                out.println("Answer "+i+": <input  type=\"text\"  name=\"question"+i+"\" size=\"35\" placeholder=\"Write Here the Answer\"><br>");
+                           
+                           // ComboBox for RightAnswer
+                           out.println("<br><h2 align=\"center\"> The Correct answer: <select name=\"answer\">");
+                           for (int i = 1; i <= NOQ; i++)
+                               out.println("<option value=\""+i+"\">"+i+"</option>");                  
+                           out.println("</select>");
+                           
                            out.println("<br><INPUT TYPE=\"SUBMIT\" VALUE=\"Add\">\n");
                            out.println("</h2></form>"); 
                            out.println("<form action=\"ServletAddQuestion\" method=\"GET\">");
@@ -131,12 +198,8 @@ public class ServletAddQuestion extends HttpServlet {
                            out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Return\">\n");
                            out.println("</h2></form>");
                        }
-                   
-                           
-                           
-                           
-                        
-                                
+                      break;
+                    }              
                 }
                 
             }

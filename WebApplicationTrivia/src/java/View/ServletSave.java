@@ -40,7 +40,11 @@ public class ServletSave extends HttpServlet {
             out.println("<title>Servlet ServletSave</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1 align=\"center\">Save successful</h1>");
+            out.println("<h1 align=\"center\">Save successful");
+            out.println("<form action=\"StartGame\" method=\"GET\">");
+            out.println("<br>");
+            out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Return\">");
+            out.println("</form></h1>");
             out.println("</body>");
             out.println("</html>");
         }
