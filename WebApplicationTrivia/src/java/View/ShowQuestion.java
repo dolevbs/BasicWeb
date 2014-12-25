@@ -28,9 +28,9 @@ public class ShowQuestion {
 
     }
     
-    public void printquestion (Question que){
+    public String printquestion (Question que){
         if ( que == null )
-            return;
+            return "";
         
         String out = "";
         out+="<!DOCTYPE html><html><head><title>Servlet StartGame</title></head><body>";
@@ -59,6 +59,9 @@ public class ShowQuestion {
         }
         out+="<INPUT TYPE=\"SUBMIT\" VALUE=\"Continue\">\n";
         out+="</h2></form>";
+        out+="</body></html>";
+        
+        return out;
     }
 
     
