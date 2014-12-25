@@ -6,12 +6,14 @@ import enums.Difficulty;
 import helpers.ParseHelper;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import jdk.nashorn.internal.ir.RuntimeNode;
 import logic.Manager;
+import models.MultipleChoiceQuestion;
 import models.Question;
 import models.YesNoQuestion;
 
@@ -55,8 +57,14 @@ public class ServletAddQuestion extends HttpServlet {
                             break;
                         case "ML":   
                             int NOQ = Integer.parseInt (request.getParameter("NOQ"));
-                            int numofanswer=Integer.parseInt (request.getParameter("answer"));
-                            //Function Missing Here
+                            int correctanswer=Integer.parseInt (request.getParameter("answer"));
+                            
+                            ArrayList<String> options = new ArrayList<>();
+                            
+                            for (int i = 1; i < NOQ + 1; i++)
+                                options.add(request.getParameter("question"+i));
+                            
+                            question = new MultipleChoiceQuestion(difficulty, category, questionText, options, correctanswer);
                             break;
                                 
                     }
