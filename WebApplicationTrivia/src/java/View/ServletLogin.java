@@ -19,8 +19,11 @@ public class ServletLogin extends HttpServlet {
         if (cookies!=null) {
          for (Cookie c : cookies){
              if (c.getName().equals("Name"))
-                 if (request.getParameter("logout")!=null)
-                     c.setMaxAge(-1);
+                 if (request.getParameter("logout")!=null){
+                     c.setMaxAge(0);
+                     response.addCookie(c);
+                 }
+                 
                  else
                      sname=c.getValue();         
          }
