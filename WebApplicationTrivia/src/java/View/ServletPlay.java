@@ -68,13 +68,6 @@ public class ServletPlay extends HttpServlet {
         Manager.getInsance().startPlayMode(categoriesToPlay.toArray(new Category[1]));
             
         }
-        
-        // Play question while the not ended
-        if (!Manager.getInsance().isGameEnded()){
-            Question curQuestion = Manager.getInsance().getNextQuestionForPlay(); 
-            session.setAttribute ("Question", curQuestion); 
-            question = ShowQuestion.getInsance().playQuestion(curQuestion);
-        }
             
             
         
@@ -90,9 +83,28 @@ public class ServletPlay extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             
-            // Print question from ShowQuestion class
-            if (!Manager.getInsance().isGameEnded())
-                out.println(question);
+            // For messege if correct of wrong
+             if (!session.isNew()) {      
+                Question que=(Question) session.getAttribute ("Question");
+                String input=request.getParameter("answer");
+                if ( true == que.verifyAnswer(input))
+                    out.println("<h1 align=\"center\" style=\"font-weight:bold;\"> Correct answer!<br></h1>");  
+                else
+                   out.println("<h1 align=\"center\" style=\"font-weight:bold;\"> Wrong answer!<br></h1>");   
+                 if (!Manager.getInsance().isGameEnded())
+                     out.println("<h1 align=\"center\" style=\"font-weight:bold;\"> Next question:<br></h1>");   
+                
+             }
+            
+            // Print question from ShowQuestion class while game not ended
+            Question curQuestion; 
+            if ((curQuestion = Manager.getInsance().getNextQuestionForPlay())!=null){
+               session.setAttribute ("Question", curQuestion); 
+               question = ShowQuestion.getInsance().playQuestion(curQuestion);
+               out.println(question);
+               
+            }
+                
             
             // Print Game Ended + number of correct answers
             else{

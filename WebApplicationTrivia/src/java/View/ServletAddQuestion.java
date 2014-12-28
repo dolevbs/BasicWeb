@@ -51,7 +51,7 @@ public class ServletAddQuestion extends HttpServlet {
                             break;
                         case "YesNo":   
                             boolean isTrue;
-                            if (request.getParameter("answer")=="Yes")
+                            if (request.getParameter("answer").equals("Yes"))
                                 isTrue=true;
                             else isTrue=false;
                             question = new YesNoQuestion(difficulty, category, questionText, isTrue);
