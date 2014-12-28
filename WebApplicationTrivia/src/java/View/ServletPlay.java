@@ -82,7 +82,7 @@ public class ServletPlay extends HttpServlet {
             out.println("<link href=\"questions.css\" rel=\"stylesheet\" type=\"text/css\">");    
             out.println("</head>");
             out.println("<body>");
-            
+             
             // For messege if correct of wrong
              if (!session.isNew()) {      
                 Question que=(Question) session.getAttribute ("Question");
@@ -91,13 +91,13 @@ public class ServletPlay extends HttpServlet {
                     out.println("<h1 align=\"center\" style=\"font-weight:bold;\"> Correct answer!<br></h1>");  
                 else
                    out.println("<h1 align=\"center\" style=\"font-weight:bold;\"> Wrong answer!<br></h1>");   
-                 if (!Manager.getInsance().isGameEnded())
+                 if (request.getParameter("Play")==null) // for first enter
                      out.println("<h1 align=\"center\" style=\"font-weight:bold;\"> Next question:<br></h1>");   
                 
              }
             
             // Print question from ShowQuestion class while game not ended
-            Question curQuestion; 
+             Question curQuestion;
             if ((curQuestion = Manager.getInsance().getNextQuestionForPlay())!=null){
                session.setAttribute ("Question", curQuestion); 
                question = ShowQuestion.getInsance().playQuestion(curQuestion);
