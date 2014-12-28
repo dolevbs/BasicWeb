@@ -85,7 +85,7 @@ public class ServletAddQuestion extends HttpServlet {
             }
             
             // Main screen
-            if (request.getParameter("type")==null && request.getParameter("difficulty")==null && request.getParameter("Catagory")==null) {
+            if (request.getParameter("type")==null && request.getParameter("difficulty")==null && request.getParameter("category")==null) {
                 
             out.println("<form action=\"ServletAddQuestion\" method=\"GET\">");
             //question
@@ -97,17 +97,17 @@ public class ServletAddQuestion extends HttpServlet {
             out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
             out.println("Please select the difficulty:</h2>");
             out.println("<h3 align=\"center\" id=\"content\">");
-            out.println("<input type=\"radio\" name=\"difficulty\" value=\"Easy\">Easy  ");
-            out.println("<input type=\"radio\" name=\"difficulty\" value=\"Medium\">Medium  ");
-            out.println("<input type=\"radio\" name=\"difficulty\" value=\"Hard\">Hard<br>");
-            //catagory
+            out.println("<input type=\"radio\" name=\"difficulty\" value=\"1\">Easy  ");
+            out.println("<input type=\"radio\" name=\"difficulty\" value=\"2\">Medium  ");
+            out.println("<input type=\"radio\" name=\"difficulty\" value=\"3\">Hard<br>");
+            //category
             out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
             out.println("Please select the category:</h2>");
             out.println("<h3 align=\"center\" id=\"content\">");
-            out.println("<input type=\"radio\" name=\"Catagory\" value=\"General\">General ");
-            out.println("<input type=\"radio\" name=\"Catagory\" value=\"Geography\">Geography ");
-            out.println("<input type=\"radio\" name=\"Catagory\" value=\"History\">History ");
-            out.println("<input type=\"radio\" name=\"Catagory\" value=\"Sports\">Sports<br>");
+            out.println("<input type=\"radio\" name=\"category\" value=\"1\">General ");
+            out.println("<input type=\"radio\" name=\"category\" value=\"2\">Geography ");
+            out.println("<input type=\"radio\" name=\"category\" value=\"3\">History ");
+            out.println("<input type=\"radio\" name=\"category\" value=\"4\">Sports<br>");
             //type of question
             out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
             out.println("Select question type:</h2>");
@@ -128,15 +128,15 @@ public class ServletAddQuestion extends HttpServlet {
                 
                 
                 // In case one of the fields empty
-                if (request.getParameter("question")=="" || request.getParameter("difficulty")==null || request.getParameter("Catagory")==null || request.getParameter("type")==null){
+                if (request.getParameter("question")=="" || request.getParameter("difficulty")==null || request.getParameter("category")==null || request.getParameter("type")==null){
                     out.println("<form action=\"ServletAddQuestion\" method=\"GET\">");
                     out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
                     if (request.getParameter("question")=="")
                         out.println("Answer Field is Empty<br>");
                     if (request.getParameter("difficulty")==null)
                         out.println("Difficulty Field is Empty<br>");
-                    if (request.getParameter("Catagory")==null)
-                        out.println("Catagory Field is Empty<br>");
+                    if (request.getParameter("category")==null)
+                        out.println("category Field is Empty<br>");
                     if (request.getParameter("type")==null)
                         out.println("Type of question Field is Empty<br>");
                     
@@ -152,7 +152,11 @@ public class ServletAddQuestion extends HttpServlet {
                     
                     switch (request.getParameter("type")){
                     case "Open":
-                        out.println("<form action=\"ServletAddQuestion?questionText="+questionText+"&difficulty="+difficulty+"&category="+category+"&typeofquestion="+typeofquestion+"\" method=\"POST\">");
+                        out.println("<form action=\"ServletAddQuestion\" method=\"POST\">");
+                        out.println("<input type=\"hidden\" name=\"questionText\" value='"+questionText+"'>");
+                        out.println("<input type=\"hidden\" name=\"difficulty\" value="+difficulty+">");
+                        out.println("<input type=\"hidden\" name=\"category\" value="+category+">");
+                        out.println("<input type=\"hidden\" name=\"typeofquestion\" value="+typeofquestion+">");;
                         out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
                         out.println("Answer: <input  type=\"text\"  name=\"answer\" size=\"35\" placeholder=\"Write Here the Answer\"><br>");
                         out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Add\">\n");
@@ -164,7 +168,11 @@ public class ServletAddQuestion extends HttpServlet {
                         break;
                         
                     case "YesNo":
-                        out.println("<form action=\"ServletAddQuestion?questionText="+questionText+"&difficulty="+difficulty+"&category="+category+"&typeofquestion="+typeofquestion+"\" method=\"POST\">");
+                        out.println("<form action=\"ServletAddQuestion\" method=\"POST\">");
+                        out.println("<input type=\"hidden\" name=\"questionText\" value='"+questionText+"'>");
+                        out.println("<input type=\"hidden\" name=\"difficulty\" value="+difficulty+">");
+                        out.println("<input type=\"hidden\" name=\"category\" value="+category+">");
+                        out.println("<input type=\"hidden\" name=\"typeofquestion\" value="+typeofquestion+">");
                         out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
                         out.println("Answer: <input type=\"radio\" name=\"answer\" value=\"Yes\" checked>Yes ");
                         out.println("<input type=\"radio\" name=\"answer\" value=\"No\">No ");
@@ -188,9 +196,13 @@ public class ServletAddQuestion extends HttpServlet {
                        }
                        else{
                            int NOQ = Integer.parseInt (request.getParameter("numofanswers"));
-                           
-                           out.println("<form action=\"ServletAddQuestion");
-                           out.println("?questionText="+questionText+"&difficulty="+difficulty+"&category="+category+"&typeofquestion="+typeofquestion+"&NOQ="+NOQ+"\" method=\"POST\">");
+
+                           out.println("<form action=\"ServletAddQuestion\" method=\"POST\">");
+                           out.println("<input type=\"hidden\" name=\"questionText\" value='"+questionText+"'>");
+                           out.println("<input type=\"hidden\" name=\"difficulty\" value="+difficulty+">");
+                           out.println("<input type=\"hidden\" name=\"category\" value="+category+">");
+                           out.println("<input type=\"hidden\" name=\"typeofquestion\" value="+typeofquestion+">");
+                           out.println("<input type=\"hidden\" name=\"NOQ\" value="+NOQ+">");
                            out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
                            for (int i = 1; i <= NOQ; i++)
                                out.println("Answer "+i+": <input  type=\"text\"  name=\"answer"+i+"\" size=\"35\" placeholder=\"Write Here the Answer\"><br>");
