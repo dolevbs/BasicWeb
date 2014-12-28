@@ -85,7 +85,8 @@ public class ServletPlay extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletPlay</title>");            
+            out.println("<title>Servlet ServletPlay</title>");    
+            out.println("<link href=\"questions.css\" rel=\"stylesheet\" type=\"text/css\">");    
             out.println("</head>");
             out.println("<body>");
             
@@ -97,7 +98,7 @@ public class ServletPlay extends HttpServlet {
             else{
                 int count=(int) session.getAttribute("CorrectAnswers");
                 int numberquestions=(int) session.getAttribute("NumofQuestions");
-                 out.println("<h1 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\"> Game Ended<br><br>");
+                 out.println("<h1 align=\"center\" style=\"font-weight:bold; color:orange;\"> Game Ended<br><br>");
                  out.println("You got "+ count +" of "+numberquestions+" questions correct<br><br>");
                  out.println("If you want to play again click <a href=\"ServletCatagory\" >here</a></h1>");
                  session.invalidate(); 

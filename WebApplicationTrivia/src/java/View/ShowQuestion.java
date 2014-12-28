@@ -35,9 +35,9 @@ public class ShowQuestion {
         String out = "";
         out+="<!DOCTYPE html><html><head><title>Servlet StartGame</title></head><body>";
         out+="<form action=\"ServletPlay\" method=\"GET\">";
-        out+="<h1 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">" + que.getQuestionText() + "  </h1>";
+        out+="<h1 align=\"center\" id=\"question\">" + que.getQuestionText() + "  </h1>";
         out+="</body></html>";
-        out+="<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">";
+        out+="<h2 align=\"center\" id=\"answers\" >";
         
         if ( que instanceof MultipleChoiceQuestion ) {
             List<String> options = (( MultipleChoiceQuestion)que).getOptions();

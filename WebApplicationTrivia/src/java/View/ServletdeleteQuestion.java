@@ -54,9 +54,9 @@ public class ServletdeleteQuestion extends HttpServlet {
         else {
             out.println("<form action=\"\">");
             //question
-            out.println("<h1 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
+            out.println("<h1 align=\"center\" id=\"content\" style=\"font-weight:bold; color:orange;\">");
             out.println("Choose a question to delete:</h1><br><br><br>");
-            out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
+            out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:blue;\">");
             for (int i = 1; i <= questions.length; i++) {
                 out.println(i + ". " + questions[i - 1].getQuestionText());
                 out.println("<br>");
