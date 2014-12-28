@@ -38,6 +38,10 @@ public class ServletPlay extends HttpServlet {
         String stringCorrectAnswers = new String("CorrectAnswers");
         session.setAttribute (stringCorrectAnswers, CorrectAnswers);  
         
+        Integer NumofQuestions = new Integer(0);
+        String stringNumofQuestions = new String("NumofQuestions");
+        session.setAttribute (stringNumofQuestions, NumofQuestions); 
+        
         }
          
         else {
@@ -47,6 +51,9 @@ public class ServletPlay extends HttpServlet {
                    int CorrectAnswers=(int) session.getAttribute("CorrectAnswers");
                     session.setAttribute ("CorrectAnswers", CorrectAnswers+1);  
                 }
+                
+                 int NumofQuestions=(int) session.getAttribute("NumofQuestions");
+                 session.setAttribute ("NumofQuestions", NumofQuestions+1);  
          }
         
         // Start the game "Play" means it came from ServletCatagory
@@ -89,8 +96,9 @@ public class ServletPlay extends HttpServlet {
             // Print Game Ended + number of correct answers
             else{
                 int count=(int) session.getAttribute("CorrectAnswers");
-                 out.println("<h1 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\"> Game Ended<br>");
-                 out.println("You got "+ count +" questions correct<br>");
+                int numberquestions=(int) session.getAttribute("NumofQuestions");
+                 out.println("<h1 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\"> Game Ended<br><br>");
+                 out.println("You got "+ count +" of "+numberquestions+" questions correct<br><br>");
                  out.println("If you want to play again click <a href=\"ServletCatagory\" >here</a></h1>");
                  session.invalidate(); 
             }

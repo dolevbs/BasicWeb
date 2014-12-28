@@ -11,7 +11,6 @@ public class FileManager<T  extends Serializable> {
 
     public T Load() throws FileNotFoundException, IOException, ClassNotFoundException{
         if ( !fileData.exists() ) {
-            fileData.createNewFile();
             return null;
         }
         FileInputStream fis = new FileInputStream(fileData);
