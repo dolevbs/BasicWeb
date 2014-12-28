@@ -90,9 +90,7 @@ public class ServletPlay extends HttpServlet {
                 if ( true == que.verifyAnswer(input))
                     out.println("<h1 align=\"center\" style=\"font-weight:bold;\"> Correct answer!<br></h1>");  
                 else
-                   out.println("<h1 align=\"center\" style=\"font-weight:bold;\"> Wrong answer!<br></h1>");   
-                 if (request.getParameter("Play")==null) // for first enter
-                     out.println("<h1 align=\"center\" style=\"font-weight:bold;\"> Next question:<br></h1>");   
+                   out.println("<h1 align=\"center\" style=\"font-weight:bold;\"> Wrong answer!<br></h1>");      
                 
              }
             
@@ -101,6 +99,8 @@ public class ServletPlay extends HttpServlet {
             if ((curQuestion = Manager.getInsance().getNextQuestionForPlay())!=null){
                session.setAttribute ("Question", curQuestion); 
                question = ShowQuestion.getInsance().playQuestion(curQuestion);
+               if (request.getParameter("Play")==null) // for prevent messege in first enter
+                     out.println("<h1 align=\"center\" style=\"font-weight:bold;\"> Next question:<br></h1>");
                out.println(question);
                
             }
