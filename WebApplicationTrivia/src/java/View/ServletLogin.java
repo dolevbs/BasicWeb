@@ -49,7 +49,7 @@ public class ServletLogin extends HttpServlet {
          if (sname!=""){
 
             out.println("<h3 style=\"color:white;\"> Welcome "+ sname + " </h3>");
-            out.println("<form action=\"ServletLogin\" method=\"GET\">");
+            out.println("<form action=\"ServletLogin?continue=true\" method=\"GET\">");
             out.println("<input type=\"hidden\" name=\"logout\" value=\"true\">");
             out.println("<h3> <INPUT TYPE=\"SUBMIT\" VALUE=\"Log Out\">");
             out.println("</h3> </form>");

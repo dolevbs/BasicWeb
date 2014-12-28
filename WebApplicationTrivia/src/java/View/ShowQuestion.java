@@ -28,13 +28,13 @@ public class ShowQuestion {
 
     }
     
-    public String printquestion (Question que){
+    public String playQuestion (Question que){
         if ( que == null )
             return "";
         
         String out = "";
         out+="<!DOCTYPE html><html><head><title>Servlet StartGame</title></head><body>";
-        out+="<form action=\"##\" method=\"GET\">";
+        out+="<form action=\"ServletPlay\" method=\"GET\">";
         out+="<h1 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">" + que.getQuestionText() + "  </h1>";
         out+="</body></html>";
         out+="<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">";
@@ -44,17 +44,17 @@ public class ShowQuestion {
             
             for (int i = 0; i < options.size(); i++) {
                 
-                out+="<input type=\"radio\" name=\"answer\" value="+(i+1)+">"+(i + 1) + ". " + options.get(i)  + "  </h2><br>";
+                out+="<input type=\"radio\" name=\"answer\" value="+(i+1)+">"+(i + 1) + ". " + options.get(i)  + "  <br>";
             }
             
         }
         
-        if ( que instanceof YesNoQuestion ){
+        else if ( que instanceof YesNoQuestion ){
           out+="Answer: <input type=\"radio\" name=\"answer\" value=\"Yes\" checked>Yes ";
           out+="<input type=\"radio\" name=\"answer\" value=\"No\">No <br>";
         }
         
-        if (que instanceof Question) {
+        else if (que instanceof Question) {
            out+="Answer: <input  type=\"text\"  name=\"answer\" size=\"35\" placeholder=\"Write Here the Answer\"><br>";
         }
         out+="<INPUT TYPE=\"SUBMIT\" VALUE=\"Continue\">\n";

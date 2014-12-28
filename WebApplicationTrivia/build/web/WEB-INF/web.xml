@@ -36,6 +36,10 @@
         <servlet-name>ServletLogin</servlet-name>
         <servlet-class>View.ServletLogin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletPlay</servlet-name>
+        <servlet-class>View.ServletPlay</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>StartGame</servlet-name>
         <url-pattern>/StartGame</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>ServletLogin</servlet-name>
         <url-pattern>/ServletLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletPlay</servlet-name>
+        <url-pattern>/ServletPlay</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
