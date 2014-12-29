@@ -66,10 +66,12 @@ public class ServletPlay extends HttpServlet {
     protected String getname(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Cookie[] cookies = request.getCookies();  
         
-        if (cookies==null)
-            return null;
+        String sname="";
         
-        String sname=""; 
+        if (cookies==null)
+            return "";
+        
+         
          for (Cookie c : cookies)
              if (c.getName().equals("Name"))
                  sname=c.getValue();
@@ -157,7 +159,7 @@ public class ServletPlay extends HttpServlet {
                if (request.getParameter("Play")==null) // for prevent messege in first enter
                      out.println("<h1 align=\"center\" style=\"font-weight:bold;\"> Next question:<br></h1>");
                out.println(question);
-               out.println("<br><br><h1 align=\"center\" style=\"font-weight:bold;\">");
+               out.println("<br><br><h1 align=\"center\" style=\"font-weight:bold; color:red;\">");
                out.println("If you want to end the game click <a href=\"ServletPlay?end=true\" >here</a></h1>");
                
             }
@@ -180,7 +182,7 @@ public class ServletPlay extends HttpServlet {
                      
                  }
                  String name=getname(request,response);
-                 if (name!=null){
+                 if (name!=""){
                       out.println("<h1 align=\"center\" style=\"font-weight:bold; color:blue;\">");
                       out.println(name+", Thank you for playing<br>");
                  }
