@@ -55,7 +55,7 @@ public class ServletdeleteQuestion extends HttpServlet {
             out.println("<form action=\"\">");
             //question
             out.println("<h1 align=\"center\" id=\"content\" style=\"font-weight:bold; color:orange;\">");
-            out.println("Choose a question to delete:</h1><br><br><br>");
+            out.println("Choose a question to delete:</h1><br><br>");
             out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:blue;\">");
             for (int i = 1; i <= questions.length; i++) {
                 out.println(i + ". " + questions[i - 1].getQuestionText());
@@ -74,7 +74,7 @@ public class ServletdeleteQuestion extends HttpServlet {
             out.println("</h2>");
             
         }
-            out.println("<br><h4 align=\"center\"> * Question will be deleted permanently only after saving changes in StartGame menu </h4>");
+            out.println("<h4 align=\"center\"> * Question will be deleted permanently only after saving changes in StartGame menu </h4>");
             out.println("</body>");
             out.println("</html>");
         }

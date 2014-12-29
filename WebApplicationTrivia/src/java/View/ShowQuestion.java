@@ -37,27 +37,31 @@ public class ShowQuestion {
         out+="<form action=\"ServletPlay\" method=\"GET\">";
         out+="<h1 align=\"center\" id=\"question\">" + que.getQuestionText() + "  </h1>";
         out+="</body></html>";
-        out+="<h2 align=\"center\" id=\"answers\" >";
+        out+="<h2 align=\"center\" >";
         
         if ( que instanceof MultipleChoiceQuestion ) {
             List<String> options = (( MultipleChoiceQuestion)que).getOptions();
             
             for (int i = 0; i < options.size(); i++) {
-                
+                out+="<h2 align=\"center\" id=\"answers\" >";
                 out+="<input type=\"radio\" name=\"answer\" value="+(i+1)+">"+(i + 1) + ". " + options.get(i)  + "  <br>";
             }
             
         }
         
         else if ( que instanceof YesNoQuestion ){
+          out+="<h2 align=\"center\" id=\"answers\" >";
           out+="Answer: <input type=\"radio\" name=\"answer\" value=\"Yes\" checked>Yes ";
+          out+="<h2 align=\"center\" id=\"answers\" >";
           out+="<input type=\"radio\" name=\"answer\" value=\"No\">No <br>";
         }
         
         else if (que instanceof Question) {
+           out+="<h2 align=\"center\" id=\"answers\" >";
            out+="Answer: <input  type=\"text\"  name=\"answer\" size=\"35\" placeholder=\"Write Here the Answer\"><br>";
         }
-        out+="<INPUT TYPE=\"SUBMIT\" VALUE=\"Continue\">\n";
+        out+="</h2>";
+        out+="<h2 align=\"center\" ><INPUT TYPE=\"SUBMIT\" VALUE=\"Continue\"></h2>\n";
         out+="</h2></form>";
         out+="</body></html>";
         

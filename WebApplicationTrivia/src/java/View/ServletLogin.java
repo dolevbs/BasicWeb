@@ -31,9 +31,9 @@ public class ServletLogin extends HttpServlet {
          if (sname=="" && request.getParameter("username")!=null && request.getParameter("username")!=""){
              Cookie firstName = new Cookie("Name", request.getParameter("username"));
              sname=request.getParameter("username");
-             response.addCookie( firstName ); 
             if (request.getParameter("remember")!=null)
                   firstName.setMaxAge(60*60*24); 
+            response.addCookie( firstName );
          }
          
         response.setContentType("text/html;charset=UTF-8");

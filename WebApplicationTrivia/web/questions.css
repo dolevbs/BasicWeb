@@ -1,9 +1,18 @@
 #question {
 font-weight: bold;
-color: orange;
+color:#2a5980;
+font-size:22pt;
+
 }
 
 #answers {
 font-weight: bold;
-color:black;
+font-family: 'Handlee', "Comic Sans MS", cursive;
+padding: 3px;
+border: 2px solid #286e87;
+margin: 7px auto 7px auto;
+background-color:#bbd9ee;
+width: 400px;
+text-align: center;
+border-radius: 10px;
 }

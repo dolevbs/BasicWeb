@@ -146,10 +146,16 @@ public class ServletPlay extends HttpServlet {
              if (!session.isNew()) {      
                 Question que=(Question) session.getAttribute ("Question");
                 String input=request.getParameter("answer");
-                if ( true == que.verifyAnswer(input))
-                    out.println("<h1 align=\"center\" style=\"font-weight:bold;\"> Correct answer!<br></h1>");  
-                else
-                   out.println("<h1 align=\"center\" style=\"font-weight:bold;\"> Wrong answer!<br></h1>");      
+                if ( true == que.verifyAnswer(input)){
+                    out.println("<h1 align=\"center\" style=\"font-weight:bold;\"> Correct answer!<br>"); 
+                    out.println("<img align=\"center\" src=\"\\Images\\correct.png\" width=\"62\" height=\"62\">"); 
+                    out.println("</h1>");
+                }
+                else {
+                   out.println("<h1 align=\"center\" style=\"font-weight:bold;\"> Wrong answer!<br>");  
+                   out.println("<img align=\"center\" src=\"\\Images\\incorrect.jpg\" width=\"80\" height=\"62\">"); 
+                   out.println("</h1>"); 
+                }
                 
              }
             
@@ -158,10 +164,14 @@ public class ServletPlay extends HttpServlet {
             if ((curQuestion = Manager.getInsance().getNextQuestionForPlay())!=null && request.getParameter("end")==null){
                session.setAttribute ("Question", curQuestion); 
                question = ShowQuestion.getInsance().playQuestion(curQuestion);
-               if (request.getParameter("Play")==null) // for prevent messege in first enter
-                     out.println("<h1 align=\"center\" style=\"font-weight:bold;\"> Next question:<br></h1>");
+               if (request.getParameter("Play")==null) { // for prevent messege in first enter
+                     out.println("<h1 align=\"center\">");
+                     out.println("<br><img align=\"center\" src=\"\\Images\\nextQuestionRed.png\" width=\"304\" height=\"57\"><br>");
+                     out.println("</h1>");
+                     
+               }
                out.println(question);
-               out.println("<br><br><h1 align=\"center\" style=\"font-weight:bold; color:red;\">");
+               out.println("<br><br><h1 align=\"center\" style=\"font-weight:bold; color:#2a5980;\">");
                out.println("If you want to end the game click <a href=\"ServletPlay?end=true\" >here</a></h1>");
                
             }
@@ -172,10 +182,10 @@ public class ServletPlay extends HttpServlet {
                 int count=(int) session.getAttribute("CorrectAnswers");
                 int numberquestions=(int) session.getAttribute("NumofQuestions");
                 
-                 out.println("<h2 align=\"center\" style=\"font-weight:bold; color:red;\">");
+                 out.println("<h2 align=\"center\" style=\"font-weight:bold; color:red;font-family: 'HelveticaRegular',Helvetica,Arial;\">");
                  if (numberquestions>0)
                      out.println("Score: "+(count*100/numberquestions)+"%</h2><br>");
-                 out.println("<h1 align=\"center\" style=\"font-weight:bold; color:orange;\"> Game Ended<br><br>");
+                 out.println("<h1 align=\"center\" style=\"font-weight:bold; color:orange;font-family: 'HelveticaRegular',Helvetica,Arial;\"> Game Ended<br><br>");
                  out.println("You got "+ count +" of "+numberquestions+" questions correct<br><br>");
                  out.println("Selected Categories:<br>");
                  
@@ -187,11 +197,11 @@ public class ServletPlay extends HttpServlet {
                  }
                  String name=getname(request,response);
                  if (name!=""){
-                      out.println("<h1 align=\"center\" style=\"font-weight:bold; color:blue;\">");
+                      out.println("<h1 align=\"center\" style=\"font-weight:bold; color:blue;font-family: 'HelveticaRegular',Helvetica,Arial;\">");
                       out.println(name+", Thank you for playing<br>");
                  }
                      
-                 out.println("<h1 align=\"center\" style=\"font-weight:bold; color:black;\">");
+                 out.println("<h1 align=\"center\" style=\"font-weight:bold; color:black;font-family: 'HelveticaRegular',Helvetica,Arial;\">");
                  out.println("<br>If you want to play again click <a href=\"ServletCatagory\" >here</a></h1>");
                  session.invalidate(); 
             }

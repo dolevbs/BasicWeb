@@ -38,7 +38,7 @@ public class about extends HttpServlet {
             out.println("<title>Servlet StartGame</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1 align=\"center\" id=\"content\" style=\"font-weight:bold; color:orange;\">Create and Design by Dolev Ben Shoshan and Aviran Jerbby    </h1>");
+            out.println("<h1 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#2a5980;font-family: 'HelveticaRegular',Helvetica,Arial;\">Create and Design by Dolev Ben Shushan and Aviran Jerbby    </h1>");
             out.println("</body>");
             out.println("</html>");
         }
