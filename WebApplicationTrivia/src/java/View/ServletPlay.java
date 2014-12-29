@@ -117,12 +117,14 @@ public class ServletPlay extends HttpServlet {
             
             // Print question from ShowQuestion class while game not ended
              Question curQuestion;
-            if ((curQuestion = Manager.getInsance().getNextQuestionForPlay())!=null){
+            if ((curQuestion = Manager.getInsance().getNextQuestionForPlay())!=null && request.getParameter("end")==null){
                session.setAttribute ("Question", curQuestion); 
                question = ShowQuestion.getInsance().playQuestion(curQuestion);
                if (request.getParameter("Play")==null) // for prevent messege in first enter
                      out.println("<h1 align=\"center\" style=\"font-weight:bold;\"> Next question:<br></h1>");
                out.println(question);
+               out.println("<br><br><h1 align=\"center\" style=\"font-weight:bold;\">");
+               out.println("If you want to end the game click <a href=\"ServletPlay?end=true\" >here</a></h1>");
                
             }
                 
