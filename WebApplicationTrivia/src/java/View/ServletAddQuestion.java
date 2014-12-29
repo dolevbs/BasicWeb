@@ -135,13 +135,13 @@ public class ServletAddQuestion extends HttpServlet {
                     out.println("<form action=\"ServletAddQuestion?add=true\" method=\"POST\">");
                     out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:red;\">");
                     if (request.getParameter("question")=="")
-                        out.println("Answer Field is Empty<br>");
+                        out.println("Answer Field is empty<br>");
                     if (request.getParameter("difficulty")==null)
-                        out.println("Difficulty Field is Empty<br>");
+                        out.println("Difficulty Field is empty<br>");
                     if (request.getParameter("category")==null)
-                        out.println("category Field is Empty<br>");
+                        out.println("Category Field is empty<br>");
                     if (request.getParameter("type")==null)
-                        out.println("Type of question Field is Empty<br>");
+                        out.println("Type of question Field is empty<br>");
                     
                     out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Return\">\n");
                     out.println("</h2></form>");
