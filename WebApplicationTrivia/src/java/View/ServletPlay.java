@@ -28,16 +28,18 @@ public class ServletPlay extends HttpServlet {
         String question="";
         HttpSession session = request.getSession(true);
         List<Category> categoriesToPlay = new ArrayList<>();
+        String[] difficulty=new String[4];
             
         for (int i = 1; i <= 4; i++)
                 if(request.getParameter("Catagory"+i)!=null){
                     String selection=Integer.toString(i);
                     categoriesToPlay.add(ParseHelper.parseCategory(selection));
                     String cat=ParseHelper.parseCategory(selection).name();
-                    session.setAttribute (cat, new int[2]);  
+                    session.setAttribute (cat, new int[2]);
+                    difficulty[i-1]=request.getParameter("difficulty"+i);
                 }
         if (categoriesToPlay.size()>0){
-             Manager.getInsance().startPlayMode(categoriesToPlay.toArray(new Category[1]),request.getParameter("difficulty"));
+             Manager.getInsance().startPlayMode(categoriesToPlay.toArray(new Category[1]),difficulty);
              session.setAttribute ("Categories", categoriesToPlay.toArray(new Category[1]));
         }
         else {
@@ -169,8 +171,10 @@ public class ServletPlay extends HttpServlet {
             else{
                 int count=(int) session.getAttribute("CorrectAnswers");
                 int numberquestions=(int) session.getAttribute("NumofQuestions");
+                
                  out.println("<h2 align=\"center\" style=\"font-weight:bold; color:red;\">");
-                 out.println("Score: "+(count*100/numberquestions)+"%</h2><br>");
+                 if (numberquestions>0)
+                     out.println("Score: "+(count*100/numberquestions)+"%</h2><br>");
                  out.println("<h1 align=\"center\" style=\"font-weight:bold; color:orange;\"> Game Ended<br><br>");
                  out.println("You got "+ count +" of "+numberquestions+" questions correct<br><br>");
                  out.println("Selected Categories:<br>");

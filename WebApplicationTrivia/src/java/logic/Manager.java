@@ -18,7 +18,7 @@ public class Manager {
     private boolean[] categoriesInPlay;
     private int[] indexOfRandomQuestions;
     private int currentIndex;    
-    private Difficulty SelectedDifficulty;   
+    private Difficulty[] SelectedDifficulty;   
     private static Manager manager;
     
         public static Manager getInsance() {
@@ -72,11 +72,12 @@ public class Manager {
         ListOfQuestions.add(question);
     }
 
-    public void startPlayMode(Category[] categories, String difficulty) {         
+    public void startPlayMode(Category[] categories, String[] difficulty) {         
         categoriesInPlay = new boolean[Category.values().length];
-        SelectedDifficulty=ParseHelper.parseDifficulty(difficulty);
+        SelectedDifficulty=new Difficulty[4];
         for ( int i = 0; i < categories.length; i++ ){
             categoriesInPlay[categories[i].ordinal()] = true;
+            SelectedDifficulty[categories[i].ordinal()-1]=ParseHelper.parseDifficulty(difficulty[categories[i].ordinal()-1]);
         }
         currentIndex = 0;
         indexOfRandomQuestions=new int[ListOfQuestions.size()];
@@ -102,7 +103,7 @@ public class Manager {
         Question toReturn = null;
         for ( int i = currentIndex; i < ListOfQuestions.size(); i++, currentIndex++ ) {
             if ( categoriesInPlay[ListOfQuestions.get(indexOfRandomQuestions[i]).getCategory().ordinal()] == true &&
-                    ListOfQuestions.get(indexOfRandomQuestions[i]).getDifficulty()==SelectedDifficulty) {
+                    ListOfQuestions.get(indexOfRandomQuestions[i]).getDifficulty()==SelectedDifficulty[ListOfQuestions.get(indexOfRandomQuestions[i]).getCategory().ordinal()-1]) {
                 toReturn = ListOfQuestions.get(indexOfRandomQuestions[i]);
                 currentIndex++;
                 break;

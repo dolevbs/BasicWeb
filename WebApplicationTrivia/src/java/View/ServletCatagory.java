@@ -29,22 +29,24 @@ public class ServletCatagory extends HttpServlet {
             out.println("<title>Servlet StartGame</title>");            
             out.println("</head>");
             out.println("<body>");       
-            out.println("<h1 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
-            out.println("Please select the category:</h1><br>");
-            out.println("<h3 align=\"center\" id=\"content\">");
+
             out.println("<form action=\"ServletPlay\">");
-            out.println("<input type=\"checkbox\" name=\"Catagory1\" value=\"General\">General<br>");
-            out.println("<input type=\"checkbox\" name=\"Catagory2\" value=\"Geography\">Geography<br>");
-            out.println("<input type=\"checkbox\" name=\"Catagory3\" value=\"History\">History<br>");
-            out.println("<input type=\"checkbox\" name=\"Catagory4\" value=\"Sports\">Sports<br>");
-            out.println("</h3>"); 
-            out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
-            out.println("Please select the difficulty:</h2><br>");
-            out.println("<h3 align=\"center\" id=\"content\">");
-            out.println("<input type=\"radio\" name=\"difficulty\" value=\"1\" checked>Easy<br>");
-            out.println("<input type=\"radio\" name=\"difficulty\" value=\"2\">Medium<br>");
-            out.println("<input type=\"radio\" name=\"difficulty\" value=\"3\">Hard<br>");
-            out.println("<br><br><INPUT TYPE=\"SUBMIT\" name=\"Play\" VALUE=\"Play\">\n");
+
+            out.println("<h1 align=\"center\" id=\"content\">");
+            out.println("<INPUT TYPE=\"SUBMIT\" name=\"Play\" VALUE=\"Play\" align=\"center\">\n<br><br><h1>");
+            String[] s={"General","Geography","History","Sports"};
+            
+            for (int i=1;i<=4;i++){
+                out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;border-top: 3px solid #ff9933;\">");
+                out.println("<br><input type=\"checkbox\" name=\"Catagory"+i+"\" value=\"General\">"+s[i-1]+"<br><br>");
+                out.println("Please select the difficulty:<br></h2>");
+                out.println("<h4 align=\"center\" id=\"content\" style=\"font-weight:bold; color:black;\">");
+                out.println("<input type=\"radio\" name=\"difficulty"+i+"\" value=\"1\" checked>Easy<br>");
+                out.println("<input type=\"radio\" name=\"difficulty"+i+"\" value=\"2\">Medium<br>");
+                out.println("<input type=\"radio\" name=\"difficulty"+i+"\" value=\"3\">Hard<br></h4>");
+            }
+
+            
             out.println("</form>");
             out.println("</h3>");       
             out.println("</body>");
