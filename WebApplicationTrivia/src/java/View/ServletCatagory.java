@@ -33,7 +33,8 @@ public class ServletCatagory extends HttpServlet {
             out.println("<form action=\"ServletPlay\">");
 
             out.println("<h1 align=\"center\" id=\"content\">");
-            out.println("<INPUT TYPE=\"SUBMIT\" name=\"Play\" VALUE=\"Play\" align=\"center\">\n<br><br><h1>");
+            out.println("<INPUT TYPE=\"SUBMIT\" name=\"Play\" VALUE=\"Play\" align=\"center\" style=\" width:150px;height:80px;border:2px solid #ccc;\">\n<br><h1>");
+            
             String[] s={"General","Geography","History","Sports"};
             
             for (int i=1;i<=4;i++){
