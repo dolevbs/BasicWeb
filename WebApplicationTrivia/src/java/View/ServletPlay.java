@@ -47,13 +47,16 @@ public class ServletPlay extends HttpServlet {
         else {
                 Question que=(Question) session.getAttribute ("Question");
                 String input=request.getParameter("answer");
+                int[] Catanswers=(int[]) session.getAttribute(que.getCategory().name());
                 if ( true == que.verifyAnswer(input)){
                    int CorrectAnswers=(int) session.getAttribute("CorrectAnswers");
-                    session.setAttribute ("CorrectAnswers", CorrectAnswers+1);  
+                    session.setAttribute ("CorrectAnswers", CorrectAnswers+1);
+                    Catanswers[1]++;
                 }
-                
+                Catanswers[0]++;
                  int NumofQuestions=(int) session.getAttribute("NumofQuestions");
-                 session.setAttribute ("NumofQuestions", NumofQuestions+1);  
+                 session.setAttribute ("NumofQuestions", NumofQuestions+1); 
+                 session.setAttribute (que.getCategory().name(), Catanswers);
          }
         
         // Start the game "Play" means it came from ServletCatagory
@@ -64,9 +67,13 @@ public class ServletPlay extends HttpServlet {
                 if(request.getParameter("Catagory"+i)!=null){
                     String selection=Integer.toString(i);
                     categoriesToPlay.add(ParseHelper.parseCategory(selection));
+                    String cat=ParseHelper.parseCategory(selection).name();
+                    session.setAttribute (cat, new int[2]);  
                 }
-        if (categoriesToPlay.size()>0)
+        if (categoriesToPlay.size()>0){
              Manager.getInsance().startPlayMode(categoriesToPlay.toArray(new Category[1]),request.getParameter("difficulty"));
+             session.setAttribute ("Categories", categoriesToPlay.toArray(new Category[1]));
+        }
         else {
             response.setContentType("text/html;charset=UTF-8");
             try (PrintWriter out = response.getWriter()) {
@@ -133,9 +140,20 @@ public class ServletPlay extends HttpServlet {
             else{
                 int count=(int) session.getAttribute("CorrectAnswers");
                 int numberquestions=(int) session.getAttribute("NumofQuestions");
+                 out.println("<h2 align=\"center\" style=\"font-weight:bold; color:red;\">");
+                 out.println("Score: "+(count*100/numberquestions)+"%</h2><br>");
                  out.println("<h1 align=\"center\" style=\"font-weight:bold; color:orange;\"> Game Ended<br><br>");
                  out.println("You got "+ count +" of "+numberquestions+" questions correct<br><br>");
-                 out.println("If you want to play again click <a href=\"ServletCatagory\" >here</a></h1>");
+                 out.println("Selected Categories:<br>");
+                 
+                 Category[] cat=(Category[])session.getAttribute ("Categories"); 
+                 for (int i=0;i<cat.length;i++){
+                     int[] correctanswers=(int[])session.getAttribute (cat[i].name()); 
+                     out.println(cat[i].name()+": You got "+correctanswers[1]+" of "+correctanswers[0]+" correct<br>");
+                     
+                 }
+                 out.println("<h1 align=\"center\" style=\"font-weight:bold; color:black;\">");
+                 out.println("<br>If you want to play again click <a href=\"ServletCatagory\" >here</a></h1>");
                  session.invalidate(); 
             }
             
