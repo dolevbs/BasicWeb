@@ -31,7 +31,7 @@ public class StartGame extends HttpServlet {
             out.println("Please choose from the following options:</h1><br><br><br>");
             out.println("<h2 align=\"center\" id=\"content\">");
             out.println("<a href=\"ServletCatagory?itemID="+MainMenuOptions.Play.ordinal()+"\">" + "Play Game</a><br><br>");
-            out.println("<a href=\"ServletAddQuestion?itemID="+MainMenuOptions.AddQuestion.ordinal()+"\">"+"Add Question</a><br><br>");
+            out.println("<a href=\"ServletAddQuestion?add=true\">"+"Add Question</a><br><br>");
             out.println("<a href=\"ServletdeleteQuestion?itemID="+MainMenuOptions.DeleteQuestion.ordinal()+"\">"+"Delete Question</a><br><br>");
             out.println("<a href=\"ServletSave?itemID="+MainMenuOptions.Save.ordinal()+"\">"+"Save Changes</a><br><br>");
             out.println("</h2>");       

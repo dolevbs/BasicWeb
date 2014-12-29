@@ -85,7 +85,7 @@ public class ServletAddQuestion extends HttpServlet {
             }
             
             // Main screen
-            if (request.getParameter("type")==null && request.getParameter("difficulty")==null && request.getParameter("category")==null) {
+            if (request.getParameter("add")!=null) {
                 
             out.println("<form action=\"ServletAddQuestion\" method=\"GET\">");
             //question
@@ -128,8 +128,11 @@ public class ServletAddQuestion extends HttpServlet {
                 
                 
                 // In case one of the fields empty
-                if (request.getParameter("question")=="" || request.getParameter("difficulty")==null || request.getParameter("category")==null || request.getParameter("type")==null){
-                    out.println("<form action=\"ServletAddQuestion\" method=\"GET\">");
+                if (request.getParameter("question")=="" || 
+                        request.getParameter("difficulty")==null || 
+                        request.getParameter("category")==null || 
+                        request.getParameter("type")==null){
+                    out.println("<form action=\"ServletAddQuestion?add=true\" method=\"POST\">");
                     out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:red;\">");
                     if (request.getParameter("question")=="")
                         out.println("Answer Field is Empty<br>");
