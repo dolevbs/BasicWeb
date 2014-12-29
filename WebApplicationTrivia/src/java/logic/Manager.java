@@ -3,6 +3,8 @@ package logic;
 import java.util.ArrayList;
 import models.Question;
 import enums.Category;
+import enums.Difficulty;
+import helpers.ParseHelper;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.util.Random;
@@ -16,6 +18,7 @@ public class Manager {
     private boolean[] categoriesInPlay;
     private int[] indexOfRandomQuestions;
     private int currentIndex;    
+    private Difficulty SelectedDifficulty;   
     private static Manager manager;
     
         public static Manager getInsance() {
@@ -27,7 +30,7 @@ public class Manager {
     }
 
     public Manager() {
-        fileManager = new FileManager<>("C:\\Users\\Aviran\\Documents\\GitHub\\BasicWeb\\WebApplicationTrivia\\SavedGame.txt");
+        fileManager = new FileManager<>(getClass().getResource("/File/SavedGame.txt").getFile());
         categoriesInPlay = null;
         try {
             ListOfQuestions = fileManager.Load();
@@ -69,8 +72,9 @@ public class Manager {
         ListOfQuestions.add(question);
     }
 
-    public void startPlayMode(Category[] categories) {         
+    public void startPlayMode(Category[] categories, String difficulty) {         
         categoriesInPlay = new boolean[Category.values().length];
+        SelectedDifficulty=ParseHelper.parseDifficulty(difficulty);
         for ( int i = 0; i < categories.length; i++ ){
             categoriesInPlay[categories[i].ordinal()] = true;
         }
@@ -97,7 +101,8 @@ public class Manager {
         }
         Question toReturn = null;
         for ( int i = currentIndex; i < ListOfQuestions.size(); i++, currentIndex++ ) {
-            if ( categoriesInPlay[ListOfQuestions.get(indexOfRandomQuestions[i]).getCategory().ordinal()] == true ) {
+            if ( categoriesInPlay[ListOfQuestions.get(indexOfRandomQuestions[i]).getCategory().ordinal()] == true &&
+                    ListOfQuestions.get(indexOfRandomQuestions[i]).getDifficulty()==SelectedDifficulty) {
                 toReturn = ListOfQuestions.get(indexOfRandomQuestions[i]);
                 currentIndex++;
                 break;

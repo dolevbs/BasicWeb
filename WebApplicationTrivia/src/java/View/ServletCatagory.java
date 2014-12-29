@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class ServletCatagory extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -18,6 +19,9 @@ public class ServletCatagory extends HttpServlet {
         String CatagoryID = request.getParameter("itemID");
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            
+            HttpSession session = request.getSession(true);
+            session.invalidate(); 
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -37,9 +41,9 @@ public class ServletCatagory extends HttpServlet {
             out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
             out.println("Please select the difficulty:</h2><br>");
             out.println("<h3 align=\"center\" id=\"content\">");
-            out.println("<input type=\"radio\" name=\"difficulty\" value=\"Easy\">Easy<br>");
-            out.println("<input type=\"radio\" name=\"difficulty\" value=\"Medium\">Medium<br>");
-            out.println("<input type=\"radio\" name=\"difficulty\" value=\"Hard\">Hard<br>");
+            out.println("<input type=\"radio\" name=\"difficulty\" value=\"1\" checked>Easy<br>");
+            out.println("<input type=\"radio\" name=\"difficulty\" value=\"2\">Medium<br>");
+            out.println("<input type=\"radio\" name=\"difficulty\" value=\"3\">Hard<br>");
             out.println("<br><br><INPUT TYPE=\"SUBMIT\" name=\"Play\" VALUE=\"Play\">\n");
             out.println("</form>");
             out.println("</h3>");       

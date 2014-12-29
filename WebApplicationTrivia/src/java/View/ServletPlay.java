@@ -65,7 +65,28 @@ public class ServletPlay extends HttpServlet {
                     String selection=Integer.toString(i);
                     categoriesToPlay.add(ParseHelper.parseCategory(selection));
                 }
-        Manager.getInsance().startPlayMode(categoriesToPlay.toArray(new Category[1]));
+        if (categoriesToPlay.size()>0)
+             Manager.getInsance().startPlayMode(categoriesToPlay.toArray(new Category[1]),request.getParameter("difficulty"));
+        else {
+            response.setContentType("text/html;charset=UTF-8");
+            try (PrintWriter out = response.getWriter()) {
+            
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ServletPlay</title>");    
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<form action=\"ServletCatagory\">");
+            out.println("<h1 align=\"center\" style=\"font-weight:bold;color:red\"> No categories choosen!<br>");  
+            out.println("<br><br><INPUT TYPE=\"SUBMIT\" VALUE=\"Return\">\n");
+            out.println("</h1></form>");
+            out.println("</body>");
+            out.println("</html>");
+            return;
+            }
+        }
+       
             
         }
             
