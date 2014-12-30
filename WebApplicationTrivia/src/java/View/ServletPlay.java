@@ -112,17 +112,20 @@ public class ServletPlay extends HttpServlet {
     }
     
     protected String getname(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Cookie[] cookies = request.getCookies();  
         
+        Cookie[] cookies = request.getCookies();
+        HttpSession session = request.getSession(true);
         String sname="";
         
-        if (cookies==null)
+        if (cookies==null && session.getAttribute("username")==null)
             return "";
         
          
          for (Cookie c : cookies)
              if (c.getName().equals("Name"))
                  sname=c.getValue();
+         if (session.getAttribute("username")!=null)
+             sname=(String)session.getAttribute("username");
          
          return sname;
         
