@@ -23,11 +23,52 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logic.FileManager;
 import logic.Manager;
+import models.MultipleChoiceQuestion;
 import models.Question;
+import models.YesNoQuestion;
 
 public class ServletPlay extends HttpServlet {
     Manager manager;
  
+    protected String playQuestion (Question que){
+        if ( que == null )
+            return "";
+        
+        String out = "";
+        out+="<!DOCTYPE html><html><head><title>Servlet StartGame</title></head><body>";
+        out+="<form action=\"ServletPlay\" method=\"GET\">";
+        out+="<h1 align=\"center\" id=\"question\">" + que.getQuestionText() + "  </h1>";
+        out+="</body></html>";
+        out+="<h2 align=\"center\" >";
+        
+        if ( que instanceof MultipleChoiceQuestion ) {
+            List<String> options = (( MultipleChoiceQuestion)que).getOptions();
+            
+            for (int i = 0; i < options.size(); i++) {
+                out+="<h2 align=\"center\" id=\"answers\" >";
+                out+="<input type=\"radio\" name=\"answer\" value="+(i+1)+">"+(i + 1) + ". " + options.get(i)  + "  <br>";
+            }
+            
+        }
+        
+        else if ( que instanceof YesNoQuestion ){
+          out+="<h2 align=\"center\" id=\"answers\" >";
+          out+="Answer: <input type=\"radio\" name=\"answer\" value=\"Yes\" checked>Yes ";
+          out+="<h2 align=\"center\" id=\"answers\" >";
+          out+="<input type=\"radio\" name=\"answer\" value=\"No\">No <br>";
+        }
+        
+        else if (que instanceof Question) {
+           out+="<h2 align=\"center\" id=\"answers\" >";
+           out+="Answer: <input  type=\"text\"  name=\"answer\" size=\"35\" placeholder=\"Write Here the Answer\"><br>";
+        }
+        out+="</h2>";
+        out+="<h2 align=\"center\" ><INPUT TYPE=\"SUBMIT\" VALUE=\"Continue\"></h2>\n";
+        out+="</h2></form>";
+        out+="</body></html>";
+        
+        return out;
+    }
     
     protected void startgame(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String question="";
@@ -176,7 +217,7 @@ public class ServletPlay extends HttpServlet {
              Question curQuestion;
             if ((curQuestion = manager.getNextQuestionForPlay())!=null && request.getParameter("end")==null){
                 session.setAttribute ("Question", curQuestion); 
-               question = ShowQuestion.getInsance().playQuestion(curQuestion);
+               question = playQuestion(curQuestion);
                if (request.getParameter("Play")==null) { // for prevent messege in first enter
                      out.println("<h1 align=\"center\">");
                      out.println("<br><img align=\"center\" src=\"\\Images\\nextQuestionRed.png\" width=\"304\" height=\"57\"><br>");
