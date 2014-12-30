@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import logic.Manager;
 
 /**
@@ -32,7 +33,15 @@ public class ServletSave extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            Manager.getInsance().Save();
+            
+         HttpSession session = request.getSession(true);
+         Manager manager= (Manager) session.getAttribute ("manager");
+         if (manager==null) {
+              manager=new Manager();
+              session.setAttribute ("manager", manager);
+          }
+         
+          manager.Save();
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");

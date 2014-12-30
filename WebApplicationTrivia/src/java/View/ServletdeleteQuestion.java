@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import logic.Manager;
 
 /**
@@ -22,11 +23,18 @@ import logic.Manager;
  * @author Aviran
  */
 public class ServletdeleteQuestion extends HttpServlet {  
-    
+    Manager manager;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        Question[] questions = Manager.getInsance().getQuestions();
+         HttpSession session = request.getSession(true);
+         manager= (Manager) session.getAttribute ("manager");
+         if (manager==null) {
+              manager=new Manager();
+              session.setAttribute ("manager", manager);
+          }
+        
+        Question[] questions = manager.getQuestions();
         
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {            
@@ -39,8 +47,10 @@ public class ServletdeleteQuestion extends HttpServlet {
             
         if (request.getParameter("number") != null) {
             int num=Integer.parseInt (request.getParameter("number"));
-            Manager.getInsance().deleteQuestion(questions[num - 1]);
-            out.println("<h1 align=\"center\">Delete successful");
+            manager.deleteQuestion(questions[num - 1]);
+            out.println("<h1 align=\"center\">");
+            out.println("<img align=\"center\" src=\"\\Images\\Status-Completed.png\"><br><br>");
+            out.println("Delete successful");
             out.println("<form action=\"StartGame\" method=\"GET\">");
             out.println("<br>");
             out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Return\">");
@@ -68,14 +78,14 @@ public class ServletdeleteQuestion extends HttpServlet {
             for (int i = 1; i <= questions.length; i++)
                 out.println("<option value=\""+i+"\">"+i+"</option>");
             out.println("</select>");
-            out.println("<br><br>");
+            out.println("<br>");
             out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Delete\">");
             out.println("</form>");
             out.println("</h2>");
             
         }
             out.println("<h4 align=\"center\"> * Question will be deleted permanently only after saving changes in StartGame menu </h4>");
-            out.println("</body>");
+            out.println("<br><br></body>");
             out.println("</html>");
         }
     }

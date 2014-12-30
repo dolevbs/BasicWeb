@@ -12,16 +12,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import logic.Manager;
 
 public class ServletCatagory extends HttpServlet {
+    Manager manager;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String CatagoryID = request.getParameter("itemID");
+        
+         HttpSession session = request.getSession(true);
+         manager= (Manager) session.getAttribute ("manager");
+         if (manager==null) {
+              manager=new Manager();
+              session.setAttribute ("manager", manager);
+          }
+         
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            HttpSession session = request.getSession(true);
-            session.invalidate(); 
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -31,7 +38,7 @@ public class ServletCatagory extends HttpServlet {
             out.println("<body>");       
 
             out.println("<form action=\"ServletPlay\">");
-
+            out.println("<input type=\"hidden\" name=\"firsttime\" value=\"true\">");
             out.println("<h1 align=\"center\" id=\"content\">");
             out.println("<button type=\"submit\" name=\"Play\" VALUE=\"Play\"><img src=\"\\Images\\Play.png\" border=\"0\" style=\" width:150px;height:150px;border:2px solid #ccc;\"/></button><h1>");
             

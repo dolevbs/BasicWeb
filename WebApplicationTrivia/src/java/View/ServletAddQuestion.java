@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import jdk.nashorn.internal.ir.RuntimeNode;
 import logic.Manager;
 import models.MultipleChoiceQuestion;
@@ -19,6 +20,7 @@ import models.Question;
 import models.YesNoQuestion;
 
 public class ServletAddQuestion extends HttpServlet {
+    Manager manager;
     
     protected void emptyanswer(HttpServletRequest request, HttpServletResponse response,String type) throws ServletException, IOException {
         
@@ -60,6 +62,14 @@ public class ServletAddQuestion extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+         HttpSession session = request.getSession(true);
+         manager= (Manager) session.getAttribute ("manager");
+         if (manager==null) {
+              manager=new Manager();
+              session.setAttribute ("manager", manager);
+          }
+         
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -117,7 +127,7 @@ public class ServletAddQuestion extends HttpServlet {
                                 
                     }
                 if (question != null)
-                    Manager.getInsance().addQuestion(question);
+                    manager.addQuestion(question);
                 
                 out.println("<h1 align=\"center\">");
                 out.println("<img align=\"center\" src=\"\\Images\\Status-Completed.png\"><br><br>");

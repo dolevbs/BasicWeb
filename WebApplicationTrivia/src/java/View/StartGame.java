@@ -13,12 +13,23 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import logic.Manager;
 
 
 public class StartGame extends HttpServlet {
+    Manager manager;
     
     protected String getname(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
         Cookie[] cookies = request.getCookies();  
+        
+          HttpSession session = request.getSession(true);
+          manager= (Manager) session.getAttribute ("manager");
+          if (manager==null) {
+              manager=new Manager();
+              session.setAttribute ("manager", manager);
+          }
         
         String sname="";
         
