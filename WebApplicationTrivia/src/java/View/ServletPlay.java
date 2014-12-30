@@ -8,21 +8,81 @@ package View;
 
 import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import enums.Category;
+import enums.Difficulty;
 import helpers.ParseHelper;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import logic.FileManager;
 import logic.Manager;
 import models.Question;
 
 public class ServletPlay extends HttpServlet {
+    
+    public final FileManager<ArrayList<Question>> fileManager = new FileManager<>(getClass().getResource("/File/SavedGame.txt").getFile());
+    private ArrayList<Question> ListOfQuestions;
+    private boolean[] categoriesInPlay;
+    private int[] indexOfRandomQuestions;
+    private int currentIndex;    
+    private Difficulty[] SelectedDifficulty;   
+    
+    protected Question getNextQuestionForPlay (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if ( categoriesInPlay == null ) {
+            System.err.println("Tring to play without initiate");
+            return null;
+        }
+        Question toReturn = null;
+        for ( int i = currentIndex; i < ListOfQuestions.size(); i++, currentIndex++ ) {
+            if ( categoriesInPlay[ListOfQuestions.get(indexOfRandomQuestions[i]).getCategory().ordinal()] == true &&
+                    ListOfQuestions.get(indexOfRandomQuestions[i]).getDifficulty()==SelectedDifficulty[ListOfQuestions.get(indexOfRandomQuestions[i]).getCategory().ordinal()-1]) {
+                toReturn = ListOfQuestions.get(indexOfRandomQuestions[i]);
+                currentIndex++;
+                break;
+            }
+        }
+        return toReturn;
+    }
+    
+    public void startPlayMode(HttpServletRequest request, HttpServletResponse response,Category[] categories, String[] difficulty) throws ServletException, IOException {   
+        
+        HttpSession session = request.getSession(true);
+        
+        categoriesInPlay = new boolean[Category.values().length];
+        SelectedDifficulty=new Difficulty[4];
+        for ( int i = 0; i < categories.length; i++ ){
+            categoriesInPlay[categories[i].ordinal()] = true;
+            SelectedDifficulty[categories[i].ordinal()-1]=ParseHelper.parseDifficulty(difficulty[categories[i].ordinal()-1]);
+        }
+        currentIndex = 0;
+        indexOfRandomQuestions=new int[ListOfQuestions.size()];
+        
+        for ( int i = 0; i < ListOfQuestions.size(); i++)  // Reset Random Question Index
+                indexOfRandomQuestions[i]=-1;
+                
+        for ( int i = 0; i < ListOfQuestions.size(); i++) {   // for Random Questions
+                Random rand=new Random();
+                int RandomNumber=rand.nextInt(ListOfQuestions.size());
+                while (indexOfRandomQuestions[RandomNumber]!=-1)
+                    RandomNumber=rand.nextInt(ListOfQuestions.size());
+                indexOfRandomQuestions[RandomNumber]=i;
+        }
+        session.setAttribute ("categoriesInPlay", categoriesInPlay); 
+        session.setAttribute ("SelectedDifficulty", SelectedDifficulty); 
+        session.setAttribute ("currentIndex", currentIndex); 
+        session.setAttribute ("indexOfRandomQuestions", indexOfRandomQuestions); 
+    }
+    
+    
+        
+        
     
     protected void startgame(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String question="";
@@ -39,7 +99,7 @@ public class ServletPlay extends HttpServlet {
                     difficulty[i-1]=request.getParameter("difficulty"+i);
                 }
         if (categoriesToPlay.size()>0){
-             Manager.getInsance().startPlayMode(categoriesToPlay.toArray(new Category[1]),difficulty);
+             startPlayMode(request,response,categoriesToPlay.toArray(new Category[1]),difficulty);
              session.setAttribute ("Categories", categoriesToPlay.toArray(new Category[1]));
         }
         else {
@@ -106,8 +166,10 @@ public class ServletPlay extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String question="";
+        ListOfQuestions=Manager.getInsance().ListOfQuestions;
         HttpSession session = request.getSession(true);
+        String question="";
+        
         
         // Update number of correct answers
          if (session.isNew()) {
@@ -127,6 +189,11 @@ public class ServletPlay extends HttpServlet {
         // Start the game "Play" means it came from ServletCatagory
         if (request.getParameter("Play")!=null)
             startgame(request,response);
+        
+        categoriesInPlay=(boolean[]) session.getAttribute ("categoriesInPlay");
+        indexOfRandomQuestions=(int[]) session.getAttribute ("indexOfRandomQuestions");
+        currentIndex=(int) session.getAttribute ("currentIndex");
+        SelectedDifficulty=(Difficulty[]) session.getAttribute ("SelectedDifficulty");
             
             
         
@@ -161,8 +228,10 @@ public class ServletPlay extends HttpServlet {
             
             // Print question from ShowQuestion class while game not ended
              Question curQuestion;
-            if ((curQuestion = Manager.getInsance().getNextQuestionForPlay())!=null && request.getParameter("end")==null){
+            if ((curQuestion = getNextQuestionForPlay(request,response))!=null && request.getParameter("end")==null){
                session.setAttribute ("Question", curQuestion); 
+               
+               session.setAttribute ("currentIndex", currentIndex+1); 
                question = ShowQuestion.getInsance().playQuestion(curQuestion);
                if (request.getParameter("Play")==null) { // for prevent messege in first enter
                      out.println("<h1 align=\"center\">");

@@ -14,7 +14,8 @@ public class Manager {
 
     public final FileManager<ArrayList<Question>> fileManager;
 
-    private ArrayList<Question> ListOfQuestions;    
+    public ArrayList<Question> ListOfQuestions;    
+    
     private boolean[] categoriesInPlay;
     private int[] indexOfRandomQuestions;
     private int currentIndex;    
