@@ -182,13 +182,19 @@ public class ServletPlay extends HttpServlet {
                 int count=(int) session.getAttribute("CorrectAnswers");
                 int numberquestions=(int) session.getAttribute("NumofQuestions");
                 
-                 out.println("<h2 align=\"center\" style=\"font-weight:bold; color:red;font-family: 'HelveticaRegular',Helvetica,Arial;\">");
+                 out.println("<br><h2 align=\"center\" style=\"font-weight:bold;font-family: 'HelveticaRegular',Helvetica,Arial;background-color:lightgreen;border: 2px solid #286e87;margin: 7px auto 7px auto;width: 200px;border: 2px solid #286e87;border-radius: 10px;\">");
                  if (numberquestions>0)
                      out.println("Score: "+(count*100/numberquestions)+"%</h2><br>");
-                 out.println("<h1 align=\"center\" style=\"font-weight:bold; color:orange;font-family: 'HelveticaRegular',Helvetica,Arial;\"> Game Ended<br><br>");
-                 out.println("You got "+ count +" of "+numberquestions+" questions correct<br><br>");
-                 out.println("Selected Categories:<br>");
                  
+                 out.println("<h1 align=\"center\" style=\"font-weight:bold; color:orange;font-family: 'HelveticaRegular',Helvetica,Arial;\"> Game Ended<br></h1>");
+                 
+                 out.println("<h1 align=\"center\" style=\"font-weight:bold; color:#2a5980;font-family: 'HelveticaRegular',Helvetica,Arial;\">");
+                 out.println("You got "+ count +" of "+numberquestions+" questions correct<br><br></h1>");
+                 
+                 out.println("<h1 align=\"center\" style=\"font-weight:bold; color:#bbd9ee;font-family: 'HelveticaRegular',Helvetica,Arial;\">");
+                 out.println("Selected Categories:<br></h1>");
+                 
+                 out.println("<h1 align=\"center\" style=\"font-weight:bold; color:#2a5980;font-family: 'HelveticaRegular',Helvetica,Arial;\">");
                  Category[] cat=(Category[])session.getAttribute ("Categories"); 
                  for (int i=0;i<cat.length;i++){
                      int[] correctanswers=(int[])session.getAttribute (cat[i].name()); 
