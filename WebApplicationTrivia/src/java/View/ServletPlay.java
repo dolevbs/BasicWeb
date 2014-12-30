@@ -206,7 +206,7 @@ public class ServletPlay extends HttpServlet {
                  session.invalidate(); 
             }
             
-            out.println("</body>");
+            out.println("<br><br><br></body>");
             out.println("</html>");
         }
     }
