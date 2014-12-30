@@ -134,6 +134,7 @@ public class ServletAddQuestion extends HttpServlet {
                         request.getParameter("type")==null){
                     out.println("<form action=\"ServletAddQuestion?add=true\" method=\"POST\">");
                     out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:red;\">");
+                    out.println("<img align=\"center\" src=\"\\Images\\Status-Not-completed.png\"><br><br>"); 
                     if (request.getParameter("question")=="")
                         out.println("Answer Field is empty<br>");
                     if (request.getParameter("difficulty")==null)
@@ -193,6 +194,7 @@ public class ServletAddQuestion extends HttpServlet {
                                || Integer.parseInt (request.getParameter("numofanswers"))<=0){
                             out.println("<form action=\"ServletAddQuestion?add=true\" method=\"POST\">");
                             out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:red;\">");
+                            out.println("<img align=\"center\" src=\"\\Images\\Status-Not-completed.png\"><br><br>");
                             out.println("You didn't enter a valid character to Number of Answers Field or the the field is empty<br>");
                             out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Return\">\n");
                             out.println("</h2></form>");
