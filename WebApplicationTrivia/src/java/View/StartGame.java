@@ -22,24 +22,19 @@ public class StartGame extends HttpServlet {
     
     protected String getname(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        Cookie[] cookies = request.getCookies();  
-        
-          HttpSession session = request.getSession(true);
-          manager= (Manager) session.getAttribute ("manager");
-          if (manager==null) {
-              manager=new Manager();
-              session.setAttribute ("manager", manager);
-          }
-        
+        Cookie[] cookies = request.getCookies();
+        HttpSession session = request.getSession(true);
         String sname="";
         
-        if (cookies==null)
+        if (cookies==null && session.getAttribute("username")==null)
             return "";
         
          
          for (Cookie c : cookies)
              if (c.getName().equals("Name"))
                  sname=c.getValue();
+         if (session.getAttribute("username")!=null)
+             sname=(String)session.getAttribute("username");
          
          return sname;
         
@@ -47,7 +42,14 @@ public class StartGame extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String itemID = request.getParameter("itemID");
+                
+        HttpSession session = request.getSession(true);
+        manager= (Manager) session.getAttribute ("manager");
+        if (manager==null) {
+              manager=new Manager();
+              session.setAttribute ("manager", manager);
+        }
+        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
