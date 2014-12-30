@@ -8,13 +8,15 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class ServletLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        HttpSession session = request.getSession(true);
         Cookie[] cookies = request.getCookies();        
-        String sname="";    
+        String sname=""; 
 
         if (cookies!=null) {
          for (Cookie c : cookies){
@@ -28,12 +30,27 @@ public class ServletLogin extends HttpServlet {
                      sname=c.getValue();         
          }
         }
-         if (sname=="" && request.getParameter("username")!=null && request.getParameter("username")!=""){
-             Cookie firstName = new Cookie("Name", request.getParameter("username"));
+        if (sname=="" && session.getAttribute("username")!=null){
+             if (request.getParameter("logout")!=null)
+                 session.removeAttribute("username");
+                 
+             else
+                 sname=(String)session.getAttribute("username");
+             
+        }
+            
+        
+        if (sname=="" && request.getParameter("username")!=null && request.getParameter("username")!=""){
+             
              sname=request.getParameter("username");
-            if (request.getParameter("remember")!=null)
-                  firstName.setMaxAge(60*60*24); 
-            response.addCookie( firstName );
+            if (request.getParameter("remember")!=null){
+                Cookie firstName = new Cookie("Name", request.getParameter("username"));
+                firstName.setMaxAge(60*60*24); 
+                response.addCookie( firstName );
+            }
+            else
+                session.setAttribute("username", sname);
+                  
          }
          
         response.setContentType("text/html;charset=UTF-8");

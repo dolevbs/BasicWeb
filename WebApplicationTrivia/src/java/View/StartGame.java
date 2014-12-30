@@ -71,7 +71,7 @@ public class StartGame extends HttpServlet {
             }
             
             else {
-                out.println("<h1 align=\"center\" id=\"content\" style=\"font-weight:bold; color:red;\">");
+                out.println("<h1 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#ff9933;\">");
                 out.println("Please sign in above before starting the game</h1>");
             }
      
