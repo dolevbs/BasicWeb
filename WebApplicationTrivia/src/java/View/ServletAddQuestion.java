@@ -19,6 +19,44 @@ import models.Question;
 import models.YesNoQuestion;
 
 public class ServletAddQuestion extends HttpServlet {
+    
+    protected void emptyanswer(HttpServletRequest request, HttpServletResponse response,String type) throws ServletException, IOException {
+        
+        String questionText=request.getParameter("questionText");
+        String difficulty=request.getParameter("difficulty");
+        String category=request.getParameter("category");
+        String typeofquestion = request.getParameter("typeofquestion");
+        String numofanswers = request.getParameter("NOQ");
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet StartGame</title>");            
+            out.println("</head>");
+            out.println("<body>"); 
+            out.println("<form action=\"ServletAddQuestion\" method=\"GET\">");
+            out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:red;\">");
+            out.println("<img align=\"center\" src=\"\\Images\\Status-Not-completed.png\"><br><br>"); 
+            if (type=="open")
+                out.println("Answer field is empty<br>");
+            else
+                out.println("One of the answer fields is empty<br>");
+            out.println("<input type=\"hidden\" name=\"question\" value='"+questionText+"'>");
+            out.println("<input type=\"hidden\" name=\"difficulty\" value="+difficulty+">");
+            out.println("<input type=\"hidden\" name=\"category\" value="+category+">");
+            out.println("<input type=\"hidden\" name=\"type\" value="+typeofquestion+">");
+            out.println("<input type=\"hidden\" name=\"numofanswers\" value="+numofanswers+">");
+            out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Return\">");
+            out.println("</h2></form>");
+            out.println("</body>");
+            out.println("</html>");
+            
+            
+        }
+        
+    }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -47,6 +85,10 @@ public class ServletAddQuestion extends HttpServlet {
                     switch (typeofquestion) {
                         case "Open":
                             String answer=request.getParameter("answer");
+                            if (answer.equals("")){
+                                emptyanswer(request,response,"open");
+                                return;
+                            }
                             question = new Question(difficulty, category, questionText, answer);
                             break;
                         case "YesNo":   
@@ -62,8 +104,13 @@ public class ServletAddQuestion extends HttpServlet {
                             
                             ArrayList<String> options = new ArrayList<>();
                             
-                            for (int i = 1; i < NOQ + 1; i++)
+                            for (int i = 1; i < NOQ + 1; i++){
+                               if (request.getParameter("answer"+i).equals("")){
+                                emptyanswer(request,response,"ML");
+                                return;
+                            }
                                 options.add(request.getParameter("answer"+i));
+                            }
                             
                             question = new MultipleChoiceQuestion(difficulty, category, questionText, options, correctanswer);
                             break;
@@ -138,7 +185,7 @@ public class ServletAddQuestion extends HttpServlet {
                     out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:red;\">");
                     out.println("<img align=\"center\" src=\"\\Images\\Status-Not-completed.png\"><br><br>"); 
                     if (request.getParameter("question")=="")
-                        out.println("Answer Field is empty<br>");
+                        out.println("Question Field is empty<br>");
                     if (request.getParameter("difficulty")==null)
                         out.println("Difficulty Field is empty<br>");
                     if (request.getParameter("category")==null)
