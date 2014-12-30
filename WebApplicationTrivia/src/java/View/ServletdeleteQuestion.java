@@ -54,9 +54,9 @@ public class ServletdeleteQuestion extends HttpServlet {
         else {
             out.println("<form action=\"\">");
             //question
-            out.println("<h1 align=\"center\" id=\"content\" style=\"font-weight:bold; color:orange;\">");
+            out.println("<h1 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#2a5980;\">");
             out.println("Choose a question to delete:</h1><br><br>");
-            out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:blue;\">");
+            out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold;\">");
             for (int i = 1; i <= questions.length; i++) {
                 out.println(i + ". " + questions[i - 1].getQuestionText());
                 out.println("<br>");
@@ -64,7 +64,7 @@ public class ServletdeleteQuestion extends HttpServlet {
             out.println("</h2><br><br>");
             
             out.println("<form action=\"ServletdeleteQuestion\" method=\"GET\">");
-            out.println("<h2 align=\"center\"> Please enter the number of question you want to delete: <select name=\"number\">");
+            out.println("<h2 align=\"center\" style=\"color:#2a5980;\"> Please enter the number of question you want to delete: <select name=\"number\">");
             for (int i = 1; i <= questions.length; i++)
                 out.println("<option value=\""+i+"\">"+i+"</option>");
             out.println("</select>");
