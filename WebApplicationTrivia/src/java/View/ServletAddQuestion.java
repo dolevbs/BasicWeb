@@ -72,7 +72,9 @@ public class ServletAddQuestion extends HttpServlet {
                 if (question != null)
                     Manager.getInsance().addQuestion(question);
                 
-                out.println("<h1 align=\"center\">Added successful");
+                out.println("<h1 align=\"center\">");
+                out.println("<img align=\"center\" src=\"\\Images\\Status-Completed.png\"><br><br>");
+                out.println("Added successful");
                 out.println("<form action=\"StartGame\" method=\"GET\">");
                 out.println("<br>");
                 out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Return\">");
