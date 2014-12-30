@@ -49,7 +49,7 @@ public class StartGame extends HttpServlet {
             
             String sname=getname(request, response);
             if (sname!=""){
-                out.println("<h1 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
+                out.println("<h1 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#2a5980;\">");
                 out.println("Please choose from the following options:</h1><br><br><br>");
                 out.println("<h2 align=\"center\" id=\"content\">");
                 out.println("<a href=\"ServletCatagory\">" + "Play Game</a><br><br>");
