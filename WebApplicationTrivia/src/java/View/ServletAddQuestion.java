@@ -214,7 +214,7 @@ public class ServletAddQuestion extends HttpServlet {
                         out.println("Answer: <input  type=\"text\"  name=\"answer\" size=\"35\" placeholder=\"Write Here the Answer\"><br>");
                         out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Add\">\n");
                         out.println("</h2></form>");
-                        out.println("<form action=\"ServletAddQuestion\" method=\"GET\">");
+                        out.println("<form action=\"ServletAddQuestion?add=true\" method=\"POST\">");
                         out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#C8AC60;\">");
                         out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Return\">\n");
                         out.println("</h2></form>");
@@ -231,7 +231,7 @@ public class ServletAddQuestion extends HttpServlet {
                         out.println("<input type=\"radio\" name=\"answer\" value=\"No\">No ");
                         out.println("<br><INPUT TYPE=\"SUBMIT\" VALUE=\"Add\">\n");
                         out.println("</h2></form>");
-                        out.println("<form action=\"ServletAddQuestion\" method=\"GET\">");
+                        out.println("<form action=\"ServletAddQuestion?add=true\" method=\"POST\">");
                         out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#2a5980;\">");
                         out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Return\">\n");
                         out.println("</h2></form>");
@@ -269,7 +269,7 @@ public class ServletAddQuestion extends HttpServlet {
                            
                            out.println("<br><INPUT TYPE=\"SUBMIT\" VALUE=\"Add\">\n");
                            out.println("</h2></form>"); 
-                           out.println("<form action=\"ServletAddQuestion\" method=\"GET\">");
+                           out.println("<form action=\"ServletAddQuestion?add=true\" method=\"POST\">");
                            out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#2a5980;\">");
                            out.println("<INPUT TYPE=\"SUBMIT\" VALUE=\"Return\">\n");
                            out.println("</h2></form>");
