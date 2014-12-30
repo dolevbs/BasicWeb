@@ -47,7 +47,7 @@ public class ServletCatagory extends HttpServlet {
             
             for (int i=1;i<=4;i++){
                 out.println("<h2 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#2a5980;border-top: 3px solid #ff9933;\">");
-                out.println("<br><input type=\"checkbox\" name=\"Catagory"+i+"\" value=\"General\">"+s[i-1]+"<br><br></h2>");
+                out.println("<br><input type=\"checkbox\" name=\"Catagory"+i+"\" value="+s[i-1]+">"+s[i-1]+"<br><br></h2>");
                 out.println("<h2 align=\"center\" style=\"color:#2a5912;\">Please select the difficulty:<br></h2>");
                 out.println("<h4 align=\"center\" id=\"content\" style=\"font-weight:bold; color:black;\">");
                 out.println("<input type=\"radio\" name=\"difficulty"+i+"\" value=\"1\" checked>Easy<br>");
