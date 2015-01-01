@@ -4,16 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/src/java/logic/Manager.java</file>
-            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/src/java/View/StartGame.java</file>
-            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/web/style.css</file>
-            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/src/java/View/ServletSave.java</file>
-            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/web/questions.css</file>
-            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/src/java/View/ServletCatagory.java</file>
             <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/src/java/View/similargames.java</file>
-            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/src/java/View/ServletPlay.java</file>
-            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/src/java/View/ServletAddQuestion.java</file>
-            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/src/java/View/ServletdeleteQuestion.java</file>
-            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/src/java/View/ServletLogin.java</file>
+            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/src/java/logic/FileManager.java</file>
+            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/src/java/View/ServletSave.java</file>
         </group>
     </open-files>
 </project-private>
