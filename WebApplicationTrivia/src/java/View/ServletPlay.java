@@ -256,17 +256,21 @@ public class ServletPlay extends HttpServlet {
                  for (int i=0;i<cat.length;i++){
                      int[] correctanswers=(int[])session.getAttribute (cat[i].name()); 
                      out.println(cat[i].name()+": You got "+correctanswers[1]+" of "+correctanswers[0]+" correct<br>");
-                     
+                     session.removeAttribute(cat[i].name());
                  }
+                 session.removeAttribute("Categories");
+                 session.removeAttribute("count");
+                 session.removeAttribute("numberquestions");
+                 session.removeAttribute("Question");
+                 
                  String name=getname(request,response);
-                 if (name!=""){
+                 if (!name.equals("")){
                       out.println("<h1 align=\"center\" style=\"font-weight:bold; color:blue;font-family: 'HelveticaRegular',Helvetica,Arial;\">");
                       out.println(name+", Thank you for playing<br>");
                  }
                      
                  out.println("<h1 align=\"center\" style=\"font-weight:bold; color:black;font-family: 'HelveticaRegular',Helvetica,Arial;\">");
                  out.println("<br>If you want to play again click <a href=\"ServletCatagory\" >here</a></h1>");
-                 session.invalidate(); 
             }
             
             out.println("<br><br><br></body>");

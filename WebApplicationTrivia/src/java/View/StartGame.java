@@ -33,7 +33,8 @@ public class StartGame extends HttpServlet {
             for (Cookie c : cookies)
                 if (c.getName().equals("Name"))
                     sname=c.getValue();
-         } else if (session.getAttribute("username")!=null) {         
+         } 
+         if (sname.equals("") && session.getAttribute("username")!=null) {         
              sname=(String)session.getAttribute("username");
          }
          return sname;
