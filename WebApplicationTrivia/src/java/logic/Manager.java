@@ -20,18 +20,9 @@ public class Manager {
     private int[] indexOfRandomQuestions;
     private int currentIndex;    
     private Difficulty[] SelectedDifficulty;   
-    private static Manager manager;
-    
-        public static Manager getInsance() {
-        if (manager == null) {
-            manager = new Manager();
-        }
 
-        return manager;
-    }
-
-    public Manager() {
-        fileManager = new FileManager<>(getClass().getResource("/File/SavedGame.txt").getFile());
+    public Manager(String path) {
+        fileManager = new FileManager<>(path + "//SavedGame.txt");
         categoriesInPlay = null;
         try {
             ListOfQuestions = fileManager.Load();

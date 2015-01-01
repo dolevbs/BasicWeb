@@ -34,7 +34,7 @@ public class ServletSave extends HttpServlet {
          HttpSession session = request.getSession(true);
          Manager manager= (Manager) session.getAttribute ("manager");
          if (manager==null) {
-              manager=new Manager();
+              manager=new Manager(request.getServletContext().getRealPath("/"));
               session.setAttribute ("manager", manager);
           }
          

@@ -27,7 +27,7 @@ public class ServletdeleteQuestion extends HttpServlet {
          HttpSession session = request.getSession(true);
          manager= (Manager) session.getAttribute ("manager");
          if (manager==null) {
-              manager=new Manager();
+              manager=new Manager(request.getServletContext().getRealPath("/"));
               session.setAttribute ("manager", manager);
           }
         
