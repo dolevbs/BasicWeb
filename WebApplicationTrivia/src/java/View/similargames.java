@@ -42,7 +42,6 @@ public class similargames extends HttpServlet {
             out.println("<h1>Similar <span style=\"font-weight:bold; color:#C4DA64;\">Trivia Games</span> </h1>");
             out.println("<a href=\"https://www.freekigames.com/fun-trivia\">Fun Trivia</a><br><br>");
             out.println("<a href=\"http://zone.msn.com/en/generaltrivia/\">You Know It! Trivia</a><br><br>");
-            out.println("<a href=\"http://zone.msn.com/en/generaltrivia/\">You Know It! Trivia</a><br><br>");
             out.println("<a href=\"https://www.freekigames.com/trivia\">Trivia Game Online!</a><br><br>");
             out.println("</body>");
             out.println("</html>");
