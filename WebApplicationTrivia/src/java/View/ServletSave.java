@@ -14,10 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logic.Manager;
 
-/**
- *
- * @author Aviran
- */
+
 public class ServletSave extends HttpServlet {
 
     /**

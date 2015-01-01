@@ -18,10 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logic.Manager;
 
-/**
- *
- * @author Aviran
- */
+
 public class ServletdeleteQuestion extends HttpServlet {  
     Manager manager;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
