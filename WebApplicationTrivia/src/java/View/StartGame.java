@@ -29,13 +29,13 @@ public class StartGame extends HttpServlet {
         if (cookies==null && session.getAttribute("username")==null)
             return "";
         
-         
-         for (Cookie c : cookies)
-             if (c.getName().equals("Name"))
-                 sname=c.getValue();
-         if (session.getAttribute("username")!=null)
+         if ( cookies != null ) {
+            for (Cookie c : cookies)
+                if (c.getName().equals("Name"))
+                    sname=c.getValue();
+         } else if (session.getAttribute("username")!=null) {         
              sname=(String)session.getAttribute("username");
-         
+         }
          return sname;
         
     }
@@ -61,7 +61,7 @@ public class StartGame extends HttpServlet {
             out.println("<body>");       
             
             String sname=getname(request, response);
-            if (sname!=""){
+            if (!sname.equals("")){
                 out.println("<h1 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#2a5980;\">");
                 out.println("Please choose from the following options:</h1><br><br><br>");
                 out.println("<h2 align=\"center\" id=\"content\">");
