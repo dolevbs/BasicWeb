@@ -1,0 +1,10 @@
+SMAP
+DeleteSuccessful_jsp.java
+JSP
+*S JSP
+*F
++ 0 DeleteSuccessful.jsp
+WEB-INF/Services_DeleteQuestion/DeleteSuccessful.jsp
+*L
+5,21:44
+*E

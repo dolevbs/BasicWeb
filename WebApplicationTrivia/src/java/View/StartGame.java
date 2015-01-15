@@ -66,10 +66,10 @@ public class StartGame extends HttpServlet {
                 out.println("<h1 align=\"center\" id=\"content\" style=\"font-weight:bold; color:#2a5980;\">");
                 out.println("Please choose from the following options:</h1><br><br><br>");
                 out.println("<h2 align=\"center\" id=\"content\">");
-                out.println("<a href=\"ServletCatagory\">" + "Play Game</a><br><br>");
-                out.println("<a href=\"ServletAddQuestion?add=true\">"+"Add Question</a><br><br>");
-                out.println("<a href=\"ServletdeleteQuestion\">"+"Delete Question</a><br><br>");
-                out.println("<a href=\"ServletSave\">"+"Save Changes</a><br><br>");
+                out.println("<a href=\"Play?NewGame=true\">" + "Play Game</a><br><br>");
+                out.println("<a href=\"AddQuestion?add=true\">"+"Add Question</a><br><br>");
+                out.println("<a href=\"DeleteQuestion\">"+"Delete Question</a><br><br>");
+                out.println("<a href=\"Save\">"+"Save Changes</a><br><br>");
                 out.println("</h2>");  
             }
             

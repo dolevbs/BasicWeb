@@ -1,0 +1,14 @@
+SMAP
+QuestionList_jsp.java
+JSP
+*S JSP
+*F
++ 0 QuestionList.jsp
+WEB-INF/Services_DeleteQuestion/QuestionList.jsp
+*L
+5,16:45
+20,3:61
+22:64
+23:65,3
+24,5:68
+*E

@@ -40,6 +40,22 @@
         <servlet-name>ServletPlay</servlet-name>
         <servlet-class>View.ServletPlay</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddQuestion</servlet-name>
+        <servlet-class>Controller.AddQuestion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteQuestion</servlet-name>
+        <servlet-class>Controller.DeleteQuestion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Save</servlet-name>
+        <servlet-class>Controller.Save</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Play</servlet-name>
+        <servlet-class>Controller.Play</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>StartGame</servlet-name>
         <url-pattern>/StartGame</url-pattern>
@@ -79,6 +95,22 @@
     <servlet-mapping>
         <servlet-name>ServletPlay</servlet-name>
         <url-pattern>/ServletPlay</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddQuestion</servlet-name>
+        <url-pattern>/AddQuestion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteQuestion</servlet-name>
+        <url-pattern>/DeleteQuestion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Save</servlet-name>
+        <url-pattern>/Save</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Play</servlet-name>
+        <url-pattern>/Play</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
