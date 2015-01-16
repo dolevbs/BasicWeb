@@ -14,8 +14,8 @@
         <link href="questions.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <% Question que = (Question) session.getAttribute("Question");
-         Question lastque = (Question) session.getAttribute("LastQuestion");
+        <%
+            Question lastque = (Question) session.getAttribute("LastQuestion");
 
             if (request.getParameter("firsttime") == null) {
                 String input = request.getParameter("answer");
@@ -34,7 +34,8 @@
         <%}%>
 
         <form action="Play" method="GET">
-            <h1 align="center" id="question"> <%=que.getQuestionText()%> </h1>
+            <jsp:useBean id="Question" type="Question" scope="session" />
+            <h1 align="center" id="question"> ${Question.questionText}</h1>
             <h2 align="center" id="answers" >
                 Answer: <input type="radio" name="answer" value="Yes" checked>Yes </h2>
             <h2 align="center" id="answers" >

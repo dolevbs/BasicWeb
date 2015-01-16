@@ -19,6 +19,7 @@
             <input type="hidden" name="typeofquestion" value="<%= request.getParameter("type")%>">
             <input type="hidden" name="NOQ" value="<%= (Integer) request.getAttribute("numofanswers")%>">
             <h2 align="center" id="content" style="font-weight:bold; color:#2a5980;">
+                
 
                 <%  int NOQ = (Integer) request.getAttribute("numofanswers");
                     for (int i = 1; i <= NOQ; i++) {%>

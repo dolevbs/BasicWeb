@@ -17,7 +17,7 @@
     </head>
     <body>
         <% Question que = (Question) session.getAttribute("Question");
-        Question lastque = (Question) session.getAttribute("LastQuestion");
+            Question lastque = (Question) session.getAttribute("LastQuestion");
 
             if (request.getParameter("firsttime") == null) {
                 String input = request.getParameter("answer");
@@ -37,12 +37,12 @@
 
         <form action="Play" method="GET">
             <h1 align="center" id="question"> <%=que.getQuestionText()%> </h1>
-                <%List<String> options = (( MultipleChoiceQuestion)que).getOptions();
-                for (int i = 0; i < options.size(); i++) {%>
-                <%="<h2 align=\"center\" id=\"answers\" >"%>
-                <%="<input type=\"radio\" name=\"answer\" value="+(i+1)+">"+(i + 1) + ". " + options.get(i)  + "  <br></h2>"%>
+            <%List<String> options = ((MultipleChoiceQuestion) que).getOptions();
+                    for (int i = 0; i < options.size(); i++) {%>
+            <%="<h2 align=\"center\" id=\"answers\" >"%>
+            <%="<input type=\"radio\" name=\"answer\" value=" + (i + 1) + ">" + (i + 1) + ". " + options.get(i) + "  <br></h2>"%>
             <%}%>
-            
+
             <h2 align="center" ><INPUT TYPE="SUBMIT" VALUE="Continue"></h2>
         </form>
 

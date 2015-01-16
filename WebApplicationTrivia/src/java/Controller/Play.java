@@ -27,17 +27,12 @@ import models.YesNoQuestion;
  */
 public class Play extends HttpServlet {
 
-    Manager manager;
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession(true);
-        manager = (Manager) session.getAttribute("manager");
-        if (manager == null) {
-            manager = new Manager(request.getServletContext().getRealPath("/"));
-            session.setAttribute("manager", manager);
-        }
+        Manager manager = (Manager) session.getAttribute("manager");
+        
         String address = "";
 
         if (request.getParameter("NewGame") != null) {
@@ -61,8 +56,15 @@ public class Play extends HttpServlet {
                     difficulty[i - 1] = request.getParameter("difficulty" + i);
                 }
             }
-            manager.startPlayMode(categoriesToPlay.toArray(new Category[1]), difficulty);
-            session.setAttribute("Categories", categoriesToPlay.toArray(new Category[1]));
+            if (categoriesToPlay.size() > 0) {
+                manager.startPlayMode(categoriesToPlay.toArray(new Category[1]), difficulty);
+                session.setAttribute("Categories", categoriesToPlay.toArray(new Category[1]));
+            } else {
+                address = "/WEB-INF/Srevices_Play/ErrorPagePlay.jsp";
+                RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+                dispatcher.forward(request, response);
+                return;
+            }
 
             Integer CorrectAnswers = new Integer(0);
             String stringCorrectAnswers = new String("CorrectAnswers");
@@ -88,18 +90,15 @@ public class Play extends HttpServlet {
         }
 
         Question curQuestion;
-        Question LastQuestion=(Question) session.getAttribute("Question");
+        Question LastQuestion = (Question) session.getAttribute("Question");
         if ((curQuestion = manager.getNextQuestionForPlay()) != null && request.getParameter("end") == null) {
             session.setAttribute("Question", curQuestion);
             session.setAttribute("LastQuestion", LastQuestion);
             if (curQuestion instanceof MultipleChoiceQuestion) {
                 address = "/WEB-INF/Srevices_Play/_PlayQuestionMulti.jsp";
-            }
-            else if (curQuestion instanceof YesNoQuestion) {
+            } else if (curQuestion instanceof YesNoQuestion) {
                 address = "/WEB-INF/Srevices_Play/_PlayQuestionYesNo.jsp";
-            }
-
-            else if (curQuestion instanceof Question) {
+            } else if (curQuestion instanceof Question) {
                 address = "/WEB-INF/Srevices_Play/_PlayQuestionOpen.jsp";
             }
         } else {

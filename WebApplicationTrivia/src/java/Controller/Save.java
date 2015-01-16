@@ -21,17 +21,12 @@ import logic.Manager;
  * @author Aviran
  */
 public class Save extends HttpServlet {
-    Manager manager;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession(true);
-            manager= (Manager) session.getAttribute ("manager");
-            if (manager==null) {
-                manager=new Manager(request.getServletContext().getRealPath("/"));
-                session.setAttribute ("manager", manager);
-          }
+            Manager manager = (Manager) session.getAttribute("manager");
              manager.Save();
            String address="/WEB-INF/Services_Save/Save.jsp";
            RequestDispatcher dispatcher =request.getRequestDispatcher(address);

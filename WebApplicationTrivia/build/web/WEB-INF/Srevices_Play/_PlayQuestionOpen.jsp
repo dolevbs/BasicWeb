@@ -14,8 +14,9 @@
         <link href="questions.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <% Question que = (Question) session.getAttribute("Question");
-        Question lastque = (Question) session.getAttribute("LastQuestion");
+        
+        <%  Question que = (Question) session.getAttribute("Question");
+            Question lastque = (Question) session.getAttribute("LastQuestion");
 
             if (request.getParameter("firsttime") == null) {
                 String input = request.getParameter("answer");

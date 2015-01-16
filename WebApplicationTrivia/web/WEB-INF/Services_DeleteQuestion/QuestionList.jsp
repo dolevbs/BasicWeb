@@ -11,13 +11,13 @@
         <h1 align="center" id="content" style="font-weight:bold; color:#2a5980;">
             Choose a question to delete:</h1>
         <h2 align="center" id="content" style="font-weight:bold;">
-            <% Question[] questions = (Question[]) request.getAttribute("question");
 
-                    for (int i = 1; i <= questions.length; i++) {%>
+            <%  Question[] questions = (Question[]) request.getAttribute("question");
+                for (int i = 1; i <= questions.length; i++) {%>
             <%= i + ". " + questions[i - 1].getQuestionText() + "<br>"%>
             <% } %>
         </h2><br><br>
-
+        
         <form action="DeleteQuestion" method="GET">
             <h2 align="center" style="color:#2a5980;"> Please enter the number of question you want to delete: <select name="number">
                     <% for (int i = 1; i <= questions.length; i++) {%>
