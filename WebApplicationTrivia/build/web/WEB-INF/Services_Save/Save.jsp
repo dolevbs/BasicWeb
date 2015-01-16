@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="StartGame" method="GET">
+        <form action="Menu?play=true" method="POST">
              <h1 align="center">Save successful
                  <br>
                  <INPUT TYPE="SUBMIT" VALUE="Return">
