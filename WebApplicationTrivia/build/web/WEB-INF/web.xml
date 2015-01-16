@@ -34,7 +34,7 @@
     </servlet>
     <servlet>
         <servlet-name>ServletLogin</servlet-name>
-        <servlet-class>View.ServletLogin</servlet-class>
+        <servlet-class>Controller.ServletLogin</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ServletPlay</servlet-name>
