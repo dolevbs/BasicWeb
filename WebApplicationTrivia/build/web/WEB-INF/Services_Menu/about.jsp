@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1 align="center" id="content" style="font-weight:bold; color:#2a5980;font-family: 'HelveticaRegular',Helvetica,Arial;">Create and Design by Dolev Ben Shushan and Aviran Jerbby    </h1>
     </body>
 </html>
