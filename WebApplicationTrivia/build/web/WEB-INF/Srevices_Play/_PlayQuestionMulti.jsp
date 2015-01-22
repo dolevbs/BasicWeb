@@ -16,16 +16,17 @@
         <link href="questions.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <% Question que = (Question) session.getAttribute("Question");
-            Question lastque = (Question) session.getAttribute("LastQuestion");
+        <jsp:useBean id="Question" type="models.Question" scope="session" />
+        <jsp:useBean id="result" type="String" scope="session" />
+        <%
 
             if (request.getParameter("firsttime") == null) {
                 String input = request.getParameter("answer");
-                if (true == lastque.verifyAnswer(input)) {%>
+        if (result.equals("true")) {%>
         <%="<h1 align=\"center\" style=\"font-weight:bold;\"> Correct answer!<br>"%>
         <%="<img align=\"center\" src=\"\\Images\\correct.png\" width=\"62\" height=\"62\">"%> 
         <%="</h1>"%> 
-        <%} else {%>
+        <%} else if (result.equals("false")){%>
         <%="<h1 align=\"center\" style=\"font-weight:bold;\"> Wrong answer!<br>"%> 
         <%="<img align=\"center\" src=\"\\Images\\incorrect.jpg\" width=\"80\" height=\"62\">"%>
         <%="</h1>"%> 
@@ -36,8 +37,8 @@
         <%}%>
 
         <form action="Play" method="GET">
-            <h1 align="center" id="question"> <%=que.getQuestionText()%> </h1>
-            <%List<String> options = ((MultipleChoiceQuestion) que).getOptions();
+            <h1 align="center" id="question"> <%=Question.getQuestionText()%> </h1>
+            <%List<String> options = ((MultipleChoiceQuestion) Question).getOptions();
                     for (int i = 0; i < options.size(); i++) {%>
             <%="<h2 align=\"center\" id=\"answers\" >"%>
             <%="<input type=\"radio\" name=\"answer\" value=" + (i + 1) + ">" + (i + 1) + ". " + options.get(i) + "  <br></h2>"%>

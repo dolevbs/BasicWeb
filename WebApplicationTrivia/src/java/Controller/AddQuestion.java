@@ -100,6 +100,10 @@ public class AddQuestion extends HttpServlet {
             address = "/WEB-INF/Services_AddQuestion/Error Page.jsp";
 
         } else {
+            request.setAttribute("question", request.getParameter("question"));
+            request.setAttribute("difficulty", request.getParameter("difficulty"));
+            request.setAttribute("category", request.getParameter("category"));
+            request.setAttribute("type", request.getParameter("type"));
             switch (request.getParameter("type")) {
                 case "Open":
                     address = "/WEB-INF/Services_AddQuestion/AnswersOpen_AddQuestion.jsp";

@@ -3,18 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/src/java/Controller/Play.java</file>
+            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/nbproject/build-impl.xml</file>
             <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/src/java/models/Question.java</file>
-            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/web/WEB-INF/Services_AddQuestion/AddSuccessful.jsp</file>
             <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/web/WEB-INF/Services_AddQuestion/AnswersMulti_AddQuestion.jsp</file>
+            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/src/java/Controller/Menu.java</file>
             <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/web/WEB-INF/Srevices_Play/_PlayQuestionMulti.jsp</file>
             <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/src/java/models/YesNoQuestion.java</file>
-            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/web/WEB-INF/Services_DeleteQuestion/QuestionList.jsp</file>
-            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/web/WEB-INF/Srevices_Play/_PlayQuestionYesNo.jsp</file>
+            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/web/WEB-INF/Services_Menu/Menu.jsp</file>
             <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/web/WEB-INF/Srevices_Play/_PlayQuestionOpen.jsp</file>
             <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/src/java/Controller/DeleteQuestion.java</file>
+            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/web/index.html</file>
+            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/web/WEB-INF/Services_Menu/about.jsp</file>
+            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/src/java/Controller/Play.java</file>
+            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/web/WEB-INF/Services_AddQuestion/AddSuccessful.jsp</file>
+            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/web/WEB-INF/Services_Menu/SimilarGames.jsp</file>
+            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/web/WEB-INF/Services_DeleteQuestion/QuestionList.jsp</file>
+            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/web/WEB-INF/Srevices_Play/_PlayQuestionYesNo.jsp</file>
+            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/web/WEB-INF/Srevices_Play/ChooseCatagory.jsp</file>
             <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/src/java/models/MultipleChoiceQuestion.java</file>
+            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/web/WEB-INF/Services_Menu/ErrorLogin.jsp</file>
             <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/src/java/Controller/AddQuestion.java</file>
+            <file>file:/C:/Users/Aviran/Documents/GitHub/BasicWeb/WebApplicationTrivia/src/java/Controller/ServletLogin.java</file>
         </group>
     </open-files>
 </project-private>

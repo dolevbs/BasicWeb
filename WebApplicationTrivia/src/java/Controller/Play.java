@@ -91,9 +91,21 @@ public class Play extends HttpServlet {
 
         Question curQuestion;
         Question LastQuestion = (Question) session.getAttribute("Question");
+        String input = request.getParameter("answer");
+        String result="";
+        if (LastQuestion!=null){
+            if (LastQuestion.verifyAnswer(input))
+                result="true";
+            else 
+                result="false";
+        }
+                
+        
+        
         if ((curQuestion = manager.getNextQuestionForPlay()) != null && request.getParameter("end") == null) {
             session.setAttribute("Question", curQuestion);
-            session.setAttribute("LastQuestion", LastQuestion);
+            session.setAttribute("result", result);
+            
             if (curQuestion instanceof MultipleChoiceQuestion) {
                 address = "/WEB-INF/Srevices_Play/_PlayQuestionMulti.jsp";
             } else if (curQuestion instanceof YesNoQuestion) {
