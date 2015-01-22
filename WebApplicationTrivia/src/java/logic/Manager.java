@@ -28,7 +28,7 @@ public class Manager {
     public Manager(String path) {
         fileManager = new FileManager<>(path + "//SavedGame.txt");
         categoriesInPlay = null;
-  /*         try {
+        /*         try {
          ListOfQuestions = fileManager.Load();
             
          } catch (FileNotFoundException ex) {
@@ -42,15 +42,15 @@ public class Manager {
          }
          // Some error occurd (maybe file not found and stuff) initiate a new save
         
-          if (ListOfQuestions == null) {
-            ListOfQuestions = new ArrayList<>();
-        }
+         if (ListOfQuestions == null) {
+         ListOfQuestions = new ArrayList<>();
+         }
           
-          for (Question q : ListOfQuestions) {
-              addQuestion(q);
+         for (Question q : ListOfQuestions) {
+         addQuestion(q);
               
-          }
-*/
+         }
+         */
         UpdateList();
     }
 
@@ -67,43 +67,14 @@ public class Manager {
             while (rs.next()) {
                 int ID = rs.getInt(1);
                 String questionText = rs.getString(2);
-                String category = rs.getString(3);
+                Category category = getCategorybyName(rs.getString(3));
                 String type = rs.getString(4);
-                String difficulty = rs.getString(5);
+                Difficulty difficulty = getDifficultybyName(rs.getString(5));
                 String answer = rs.getString(6);
                 String answertext = rs.getString(7);
 
-                switch (category) {
-                    case "General":
-                        category = "1";
-                        break;
-                    case "Geography":
-                        category = "2";
-                        break;
-                    case "History":
-                        category = "3";
-                        break;
-                    case "Sports":
-                        category = "4";
-                        break;
-                }
-
-                switch (difficulty) {
-                    case "Easy":
-                        difficulty = "1";
-                        break;
-                    case "Medium":
-                        difficulty = "2";
-                        break;
-                    case "Hard":
-                        difficulty = "3";
-                        break;
-                }
-
-                Difficulty difficulty1 = ParseHelper.parseDifficulty(difficulty);
-                Category category1 = ParseHelper.parseCategory(category);
                 if (type.equals("Open")) {
-                    question = new Question(difficulty1, category1, questionText, answer,ID);
+                    question = new Question(difficulty, category, questionText, answer, ID);
                 } else if (type.equals("YesNo")) {
                     boolean isTrue;
                     if (answer.equals("Yes")) {
@@ -111,7 +82,7 @@ public class Manager {
                     } else {
                         isTrue = false;
                     }
-                    question = new YesNoQuestion(difficulty1, category1, questionText, isTrue,ID);
+                    question = new YesNoQuestion(difficulty, category, questionText, isTrue, ID);
                 } else {
                     String[] optionstemp = answertext.split(":");
 
@@ -120,7 +91,7 @@ public class Manager {
                     for (int i = 1; i < optionstemp.length; i++) {
                         options.add(optionstemp[i]);
                     }
-                    question = new MultipleChoiceQuestion(difficulty1, category1, questionText, options, Integer.parseInt(answer),ID);
+                    question = new MultipleChoiceQuestion(difficulty, category, questionText, options, Integer.parseInt(answer), ID);
 
                 }
                 ListOfQuestions.add(question);
@@ -243,5 +214,42 @@ public class Manager {
 
     public boolean isGameEnded() {
         return (currentIndex) >= ListOfQuestions.size();
+    }
+
+    public Category getCategorybyName(String cat) {
+        String category = "";
+        switch (cat) {
+            case "General":
+                category = "1";
+                break;
+            case "Geography":
+                category = "2";
+                break;
+            case "History":
+                category = "3";
+                break;
+            case "Sports":
+                category = "4";
+                break;
+        }
+        return ParseHelper.parseCategory(category);
+
+    }
+
+    public Difficulty getDifficultybyName(String dif) {
+        String difficulty = "";
+        switch (dif) {
+            case "Easy":
+                difficulty = "1";
+                break;
+            case "Medium":
+                difficulty = "2";
+                break;
+            case "Hard":
+                difficulty = "3";
+                break;
+        }
+        return ParseHelper.parseDifficulty(difficulty);
+
     }
 }

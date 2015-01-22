@@ -1,0 +1,30 @@
+CREATE TABLE QUESTIONS (ID INTEGER NOT NULL, QUESTIONTEXT LONG VARCHAR NOT NULL, CATEGORY LONG VARCHAR NOT NULL, "TYPE" LONG VARCHAR NOT NULL, DIFFICULTY LONG VARCHAR NOT NULL, ANSWER LONG VARCHAR NOT NULL, ANSWERSTEXT LONG VARCHAR NOT NULL, PRIMARY KEY (ID));
+
+INSERT INTO MANAGER.QUESTIONS (ID, QUESTIONTEXT, CATEGORY, "TYPE", DIFFICULTY, ANSWER, ANSWERSTEXT) 
+	VALUES (821864123, 'Which team has won the Champions League final in 2012/2013?', 'Sports', 'Multi', 'Medium', '3', ':Real Madrid:Athletico Madrid:Bayern Munich');
+INSERT INTO MANAGER.QUESTIONS (ID, QUESTIONTEXT, CATEGORY, "TYPE", DIFFICULTY, ANSWER, ANSWERSTEXT) 
+	VALUES (998718923, 'Name the only boxer to knock out Mohammed Ali in 1980', 'History', 'Open', 'Hard', 'Larry Holmesq', '');
+INSERT INTO MANAGER.QUESTIONS (ID, QUESTIONTEXT, CATEGORY, "TYPE", DIFFICULTY, ANSWER, ANSWERSTEXT) 
+	VALUES (539865414, 'Which is the capital of Australia?', 'Geography', 'Open', 'Hard', 'Canberra', '');
+INSERT INTO MANAGER.QUESTIONS (ID, QUESTIONTEXT, CATEGORY, "TYPE", DIFFICULTY, ANSWER, ANSWERSTEXT) 
+	VALUES (495958355, 'In which team didn', 'Sports', 'Multi', 'Hard', '3', ':Manchester United:Sporting Lisbon:Chelsea');
+INSERT INTO MANAGER.QUESTIONS (ID, QUESTIONTEXT, CATEGORY, "TYPE", DIFFICULTY, ANSWER, ANSWERSTEXT) 
+	VALUES (292582081, 'Which is the capital of Israel?', 'Geography', 'Multi', 'Easy', '2', ':Haifa:Jerusalem:Netanya');
+INSERT INTO MANAGER.QUESTIONS (ID, QUESTIONTEXT, CATEGORY, "TYPE", DIFFICULTY, ANSWER, ANSWERSTEXT) 
+	VALUES (577900343, 'Which player finish as top goalscorer in World Cup 2014?', 'Sports', 'Multi', 'Medium', '5', ':Arjen ROBBEN:Thomas MUELLER:NEYMAR:Lionel MESSI:James RODRIGUEZ:Robin VAN PERSIE');
+INSERT INTO MANAGER.QUESTIONS (ID, QUESTIONTEXT, CATEGORY, "TYPE", DIFFICULTY, ANSWER, ANSWERSTEXT) 
+	VALUES (877561878, 'How many countries are there in the US of America?', 'Geography', 'Open', 'Easy', '50', '');
+INSERT INTO MANAGER.QUESTIONS (ID, QUESTIONTEXT, CATEGORY, "TYPE", DIFFICULTY, ANSWER, ANSWERSTEXT) 
+	VALUES (476412512, 'Which team has won the World Cup 2014?', 'Sports', 'Multi', 'Medium', '3', ':Spain:Argentina:Germany');
+INSERT INTO MANAGER.QUESTIONS (ID, QUESTIONTEXT, CATEGORY, "TYPE", DIFFICULTY, ANSWER, ANSWERSTEXT) 
+	VALUES (405356540, 'Did Israel founded 1948?', 'History', 'YesNo', 'Easy', '1', '');
+INSERT INTO MANAGER.QUESTIONS (ID, QUESTIONTEXT, CATEGORY, "TYPE", DIFFICULTY, ANSWER, ANSWERSTEXT) 
+	VALUES (613918755, 'Which currency used in Israel?', 'General', 'Multi', 'Easy', '1', ':Israeli new shekel:Euro:Pound');
+INSERT INTO MANAGER.QUESTIONS (ID, QUESTIONTEXT, CATEGORY, "TYPE", DIFFICULTY, ANSWER, ANSWERSTEXT) 
+	VALUES (908598341, 'Did "The lord of the rings" trilogy happened before "The Hobbit" trilogy?', 'General', 'YesNo', 'Hard', '2', '');
+INSERT INTO MANAGER.QUESTIONS (ID, QUESTIONTEXT, CATEGORY, "TYPE", DIFFICULTY, ANSWER, ANSWERSTEXT) 
+	VALUES (847752167, 'The great Victoria Desert is located in', 'Geography', 'Multi', 'Hard', '1', ':Canada:West Africa:Australiat: North America');
+INSERT INTO MANAGER.QUESTIONS (ID, QUESTIONTEXT, CATEGORY, "TYPE", DIFFICULTY, ANSWER, ANSWERSTEXT) 
+	VALUES (759586565, 'Which U.S. President ordered the atomic bombings of Japan during WWII?', 'History', 'Open', 'Medium', 'Harry Truman', '');
+INSERT INTO MANAGER.QUESTIONS (ID, QUESTIONTEXT, CATEGORY, "TYPE", DIFFICULTY, ANSWER, ANSWERSTEXT) 
+	VALUES (849242297, 'Which currency used in Sweden?', 'General', 'Multi', 'Medium', '3', ':Euro:Dollar:Krona');
