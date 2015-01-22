@@ -40,6 +40,5 @@
                 <INPUT TYPE="SUBMIT" VALUE="Add">
             </h3>
         </form>
-        <br><h4 align="center"> * Question will be added permanently only after saving changes in StartGame menu </h4>
     </body>
 </html>

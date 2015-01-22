@@ -32,7 +32,6 @@
                 <INPUT TYPE="SUBMIT" VALUE="Delete">
             </h2>
         </form>
-        <h4 align="center"> * Question will be deleted permanently only after saving changes in StartGame menu </h4>
         <br><br>       
     </body>
 </html>

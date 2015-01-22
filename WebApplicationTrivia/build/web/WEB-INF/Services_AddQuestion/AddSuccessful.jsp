@@ -19,6 +19,5 @@
                 <br>
                 <INPUT TYPE="SUBMIT" VALUE="Return"></h1>
         </form>
-        <br><h4 align="center"> * Question will be added permanently only after saving changes in StartGame menu </h4>
     </body>
 </html>

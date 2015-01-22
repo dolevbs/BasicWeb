@@ -18,7 +18,6 @@
             <a href="Play?NewGame=true">Play Game</a><br><br>
             <a href="AddQuestion?add=true">Add Question</a><br><br>
             <a href="DeleteQuestion">Delete Question</a><br><br>
-            <a href="Save">Save Changes</a><br><br>
         </h2>
 
     </body>

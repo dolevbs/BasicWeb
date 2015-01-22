@@ -2,19 +2,38 @@ package models;
 
 import enums.*;
 import java.io.Serializable;
+import java.util.Random;
 
-public class Question implements Serializable  {
+public class Question implements Serializable {
 
     private Difficulty difficulty;
     private Category category;
     private String questionText;
     private String correctAnswer;
+    private int ID;
 
     public Question(Difficulty difficulty, Category category, String questionText, String answer) {
         this.difficulty = difficulty;
         this.category = category;
         this.questionText = questionText;
         this.correctAnswer = answer;
+
+        Random t = new Random();
+        this.ID = t.nextInt(1000000000);
+
+    }
+
+    public Question(Difficulty difficulty, Category category, String questionText, String answer,int ID) {
+        this.difficulty = difficulty;
+        this.category = category;
+        this.questionText = questionText;
+        this.correctAnswer = answer;
+        this.ID = ID;
+
+    }
+
+    public int getID() {
+        return ID;
     }
 
     public Difficulty getDifficulty() {
@@ -37,6 +56,10 @@ public class Question implements Serializable  {
         return questionText;
     }
 
+    public String getAnswer() {
+        return correctAnswer;
+    }
+
     public void setQuestionText(String questionText) {
         this.questionText = questionText;
     }
@@ -44,7 +67,8 @@ public class Question implements Serializable  {
     public void setCurrectAnswer(String answer) {
         correctAnswer = answer;
     }
-    public boolean verifyAnswer(String answer) { 
+
+    public boolean verifyAnswer(String answer) {
 
         return correctAnswer.equalsIgnoreCase(answer);
     }
