@@ -24,33 +24,12 @@ public class Manager {
     private int[] indexOfRandomQuestions;
     private int currentIndex;
     private Difficulty[] SelectedDifficulty;
+    private String urlCn = "jdbc:derby://localhost:1527/Questions";
 
     public Manager(String path) {
         fileManager = new FileManager<>(path + "//SavedGame.txt");
         categoriesInPlay = null;
-        /*         try {
-         ListOfQuestions = fileManager.Load();
-            
-         } catch (FileNotFoundException ex) {
-         // Doesn't suppose to happen but ok...
-         } catch (IOException ex) {
-         System.err.println("Failed to read save file");
-         ListOfQuestions = null;
-         } catch (ClassNotFoundException ex) {
-         System.err.println("Failed to read data, ClassNotFoundException");
-         ListOfQuestions = null;
-         }
-         // Some error occurd (maybe file not found and stuff) initiate a new save
-        
-         if (ListOfQuestions == null) {
-         ListOfQuestions = new ArrayList<>();
-         }
-          
-         for (Question q : ListOfQuestions) {
-         addQuestion(q);
-              
-         }
-         */
+
         UpdateList();
     }
 
@@ -59,7 +38,7 @@ public class Manager {
             ListOfQuestions = new ArrayList<>();
             Question question;
             Class.forName("org.apache.derby.jdbc.ClientDriver");
-            String urlCn = "jdbc:derby://localhost:1527/Questions";
+
             Connection cn = DriverManager.getConnection(urlCn, "manager", "1234");
 
             Statement st = cn.createStatement();
@@ -120,7 +99,7 @@ public class Manager {
         ListOfQuestions.remove(question);
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
-            String urlCn = "jdbc:derby://localhost:1527/Questions";
+
             Connection cn = DriverManager.getConnection(urlCn, "manager", "1234");
 
             PreparedStatement pst = cn.prepareStatement("delete from questions where ID=?");
@@ -140,9 +119,8 @@ public class Manager {
         ListOfQuestions.add(question);
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
-            String urlCn = "jdbc:derby://localhost:1527/Questions";
-            Connection cn = DriverManager.getConnection(urlCn, "manager", "1234");
 
+            Connection cn = DriverManager.getConnection(urlCn, "manager", "1234");
             PreparedStatement pst = cn.prepareStatement("insert into questions values(?,?,?,?,?,?,?)");
             pst.setInt(1, question.getID());
             pst.setString(2, question.getQuestionText());
