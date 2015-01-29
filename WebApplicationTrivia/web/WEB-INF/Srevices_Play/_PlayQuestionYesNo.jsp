@@ -16,10 +16,10 @@
     <body>
         <jsp:useBean id="Question" type="models.Question" scope="session" />
         <jsp:useBean id="result" type="String" scope="session" />
+        <jsp:useBean id="firsttime" type="String" scope="request" />
         <%
 
-            if (request.getParameter("firsttime") == null) {
-                String input = request.getParameter("answer");
+            if (!firsttime.equals("true")) {
         if (result.equals("true")) {%>
         <%="<h1 align=\"center\" style=\"font-weight:bold;\"> Correct answer!<br>"%>
         <%="<img align=\"center\" src=\"\\Images\\correct.png\" width=\"62\" height=\"62\">"%> 

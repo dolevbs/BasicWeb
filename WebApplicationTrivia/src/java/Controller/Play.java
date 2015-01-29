@@ -39,6 +39,7 @@ public class Play extends HttpServlet {
             address = "/WEB-INF/Srevices_Play/ChooseCatagory.jsp";
             RequestDispatcher dispatcher = request.getRequestDispatcher(address);
             dispatcher.forward(request, response);
+            request.setAttribute("firsttime", "true");
             return;
 
         } else if (request.getParameter("firsttime") != null) {
@@ -46,6 +47,7 @@ public class Play extends HttpServlet {
             String question = "";
             List<Category> categoriesToPlay = new ArrayList<>();
             String[] difficulty = new String[4];
+            request.setAttribute("firsttime", "true");
 
             for (int i = 1; i <= 4; i++) {
                 if (request.getParameter("Catagory" + i) != null) {
@@ -75,8 +77,10 @@ public class Play extends HttpServlet {
             session.setAttribute(stringNumofQuestions, NumofQuestions);
 
         } else {
+            
             Question que = (Question) session.getAttribute("Question");
             String input = request.getParameter("answer");
+            request.setAttribute("firsttime", "false");
             int[] Catanswers = (int[]) session.getAttribute(que.getCategory().name());
             if (true == que.verifyAnswer(input)) {
                 int CorrectAnswers = (int) session.getAttribute("CorrectAnswers");
