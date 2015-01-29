@@ -2,7 +2,6 @@ package models;
 
 import enums.Category;
 import enums.Difficulty;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MultipleChoiceQuestion extends Question {

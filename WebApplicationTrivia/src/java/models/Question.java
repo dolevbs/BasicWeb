@@ -10,7 +10,8 @@ public class Question implements Serializable {
     private Category category;
     private String questionText;
     private String correctAnswer;
-    private int ID;
+    private final int ID;
+    
 
     public Question(Difficulty difficulty, Category category, String questionText, String answer) {
         this.difficulty = difficulty;
