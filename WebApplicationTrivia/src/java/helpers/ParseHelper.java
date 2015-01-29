@@ -12,18 +12,6 @@ public class ParseHelper {
         }
     }
 
-    public static MainMenuOptions parseMainMenuOptions(String input) {
-
-        MainMenuOptions[] values = MainMenuOptions.values();
-        int parsedNumber = tryParseNumber(input);
-
-        if (parsedNumber < 0 || values.length <= parsedNumber) {
-            return MainMenuOptions.None;
-        }
-
-        return values[parsedNumber];
-    }
-
     public static Difficulty parseDifficulty(String input) {
 
         Difficulty[] values = Difficulty.values();

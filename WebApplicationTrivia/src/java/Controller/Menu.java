@@ -56,7 +56,7 @@ public class Menu extends HttpServlet {
         HttpSession session = request.getSession(true);
         manager = (Manager) session.getAttribute("manager");
         if (manager == null) {
-            manager = new Manager(request.getServletContext().getRealPath("/"));
+            manager = new Manager();
             session.setAttribute("manager", manager);
         }
         

@@ -17,22 +17,18 @@ import models.YesNoQuestion;
 
 public class Manager {
 
-
     public ArrayList<Question> ListOfQuestions;
 
     private boolean[] categoriesInPlay;
     private int[] indexOfRandomQuestions;
     private int currentIndex;
     private Difficulty[] SelectedDifficulty;
-    private String urlCn = "jdbc:derby://localhost:1527/Questions";
 
-    public Manager(String path) {
+    public Manager() {
+
         categoriesInPlay = null;
-
-        ListOfQuestions=DB.UpdateList();
+        ListOfQuestions = DB.UpdateList();
     }
-
-
 
     public Question[] getQuestions() {
         return ListOfQuestions.toArray(new Question[ListOfQuestions.size()]);
@@ -41,8 +37,6 @@ public class Manager {
     public void deleteQuestion(Question question) {
         ListOfQuestions.remove(question);
         DB.delete(question);
-
-
     }
 
     public void startPlayMode(Category[] categories, String[] difficulty) {
@@ -91,12 +85,11 @@ public class Manager {
     public boolean isGameEnded() {
         return (currentIndex) >= ListOfQuestions.size();
     }
-    
-        public void addQuestion(Question question) {
+
+    public void addQuestion(Question question) {
         ListOfQuestions.add(question);
         DB.addQuestion(question);
-        
+
     }
 
-    
 }
