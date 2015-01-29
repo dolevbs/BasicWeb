@@ -49,11 +49,7 @@ public class DB {
                         break;
                     case "YesNo":
                         boolean isTrue;
-                        if (answer.equals("1")) {
-                            isTrue = true;
-                        } else {
-                            isTrue = false;
-                        }
+                        isTrue=(answer.equals("1")) ;
                         question = new YesNoQuestion(difficulty, category, questionText, isTrue, ID);
                         ListOfQuestions.add(question);
                         break;
